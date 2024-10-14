@@ -1,6 +1,6 @@
-export default function loginModal({ isOpen, onClose }) {
+// import React from "react";
+export default function LoginModal({ isOpen, onClose }) {
   if (!isOpen) return null;
-
   return (
     <>
       <div
@@ -15,7 +15,7 @@ export default function loginModal({ isOpen, onClose }) {
               type="button"
               className="text-white bg-gray-200 h-7 w-7 rounded-lg items-center hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-sm p-2.5 text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
             >
-              <img className="cross w-4 h-6 p-2" src="./icons8-cross.svg"></img>
+              <img className="cross w-4 h-6 p-2" src="./icons8-cross.svg" />
             </button>
           </div>
           <div className="f-1 mt-6 p-1">

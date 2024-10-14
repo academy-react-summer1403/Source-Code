@@ -1,4 +1,4 @@
-export default function forgetPassword() {
+export default function ForgetPassword() {
   return (
     <>
       <div

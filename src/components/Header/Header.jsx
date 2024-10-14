@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
 // import React from "react";
 import { useState } from "react";
-import Modal from "../form/loginModal";
-// import forgetPassword from "../form/forgetPassword";
-
+import LoginModal from "../form/LoginModal";
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -104,7 +102,9 @@ const Header = () => {
           {" "}
           ورود به حساب{" "}
         </button>
-        {isModalOpen && <Modal isOpen={isModalOpen} onClose={closeModal} />}
+        {isModalOpen && (
+          <LoginModal isOpen={isModalOpen} onClose={closeModal} />
+        )}
       </div>
     </div>
   );
