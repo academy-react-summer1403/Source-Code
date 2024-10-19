@@ -9,7 +9,7 @@ const Header = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="h-12 my-6 mx-14 flex">
+    <div className="h-12 my-6 mx-14 flex z-50">
       <div className="my-auto mr-1">
         <svg
           width="147"

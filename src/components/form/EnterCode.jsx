@@ -1,3 +1,7 @@
 export default function EnterCode() {
-  return <></>;
+  return (
+    <>
+      <div className="container">EnterCode</div>
+    </>
+  );
 }

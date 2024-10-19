@@ -1,21 +1,41 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/rules-of-hooks */
 // import React from "react";
+/* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ForgetPassword from "../form/ForgetPassword";
 export default function LoginModal({ isOpen, onClose }) {
   if (!isOpen) return null;
+
+  const navigate = useNavigate();
+  const goToAbout = () => {
+    navigate("/EnterCode");
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <>
       <div
-        className="container  bg-white z-50 w-full max-w-xs flex justify-center "
+        className="container bg-slate-50 z-10 w-full max-w-xs flex justify-center rounded-2xl absolute top-[30%] left-[40%] transform-translate(-50%, -50%)"
         dir="rtl"
       >
-        <form className="bg-white shadow-md px-8 pt-6 pb-8 mb-4 border-gray-800 rounded-2xl">
+        <form className="p-6 border-gray-800 rounded-2xl">
           <div className="flex flex-row justify-between gap-8">
             <p className="enter font-semibold h-4">ورود به حساب</p>
             <button
               onClick={onClose}
               type="button"
-              className="text-white bg-gray-200 h-7 w-7 rounded-lg items-center hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-sm p-2.5 text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
+              className="text-white bg-gray-200 h-7 w-7 rounded-lg items-center hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
             >
-              <img className="cross w-4 h-6 p-2" src="./icons8-cross.svg" />
+              <img
+                className="cross w-5 h-5 mx-auto"
+                src="/src/components/form/icons8-cross.svg"
+              ></img>
             </button>
           </div>
           <div className="f-1 mt-6 p-1">
@@ -47,12 +67,20 @@ export default function LoginModal({ isOpen, onClose }) {
             >
               من را به خاطر بسپار
             </label>
-            <a href="#" className="axj azl bmo font-serif text-xs underline">
+            <a
+              onClick={openModal}
+              href="#"
+              className="changePassword font-serif text-xs underline"
+            >
               رمز عبور را فراموش کردم
             </a>
+            {isModalOpen && (
+              <ForgetPassword isOpen={isModalOpen} onClose={closeModal} />
+            )}
           </div>
           <div className="btn-login py-3 items-center text-center">
             <button
+              onClick={goToAbout}
               type="submit"
               className="mb ud zu aen akl asc asn axa axj axs bbl bkb bqh bqi bqk bqr bg-blue-500 text-cyan-50 text-xs rounded-full p-3 px-10 hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
             >
