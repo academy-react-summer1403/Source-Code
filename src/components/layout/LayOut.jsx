@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 const LayOut = () => {
   return (
-    <div>
+    <div className='bg-slate-50'>
         <Header/>
         <Outlet/>
         <Footer/>
