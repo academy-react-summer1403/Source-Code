@@ -5,6 +5,8 @@ import Landing from "../screens/Landing/Landing";
 import LayOut from "../components/layout/LayOut";
 import LayOutB from "../components/layout/LayOutB";
 import Courses from "../screens/Courses/Courses";
+import LayOutP from "../components/layout/LayOutP";
+import Panel from "../screens/Panel/Panel";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,7 +29,17 @@ function App() {
         {
           path: "/courses",
           element: <Courses />,
-        }
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <LayOutP />,
+      children: [
+        {
+          path: "/Panel",
+          element: <Panel />,
+        },
       ],
     },
   ]);
