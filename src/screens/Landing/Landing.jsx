@@ -140,9 +140,9 @@ const Landing = () => {
               />
             </svg>
           </div>
-          <div className="mx-auto z-50 relative flex mt-6 w-5/12 h-1/4 gap-5">
-            <div className="border-2 border-white bg-transparent rounded-xl h-full w-1/3">
-              <div className="mx-auto w-max mt-4">
+          <div className="mx-auto z-50 relative mt-6 w-5/12 grid grid-cols-1 gap-5 lg:grid-cols-3">
+            <div className="border-4 py-7 border-white bg-transparent rounded-xl h-full">
+              <div className="mx-auto w-max">
                 <svg
                   width="40"
                   height="40"
@@ -165,8 +165,8 @@ const Landing = () => {
               <div className="mx-auto w-max mt-3 text-lg font-bold">167</div>
               <div className="w-max mx-auto mt-2 text-sm">مدرس مجرب</div>
             </div>
-            <div className="border-2 border-white bg-transparent rounded-xl h-full w-1/3">
-              <div className="mx-auto w-max mt-4">
+            <div className="border-4 py-7 border-white bg-transparent rounded-xl h-full">
+              <div className="mx-auto w-max ">
                 <svg
                   width="40"
                   height="40"
@@ -191,8 +191,8 @@ const Landing = () => {
               </div>
               <div className="w-max mx-auto mt-2 text-sm">دقیقه اموزش</div>
             </div>
-            <div className="border-2 border-white bg-transparent rounded-xl h-full w-1/3">
-              <div className="mx-auto w-max mt-4">
+            <div className="border-4 py-7 border-white bg-transparent rounded-xl h-full">
+              <div className="mx-auto w-max">
                 <svg
                   width="40"
                   height="40"

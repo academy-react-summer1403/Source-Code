@@ -6,10 +6,11 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        primary:'#9F0099',
-        sub:'#36c54E',
-      }
+      opacity: {
+        '15': '0.15',
+        '35': '0.35',
+        '65': '0.65',
+       }
     },
   },
   plugins: [],
