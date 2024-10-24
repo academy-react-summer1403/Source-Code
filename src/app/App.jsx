@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Landing from "../screens/Landing/Landing";
@@ -9,8 +8,6 @@ import LayOutP from "../components/layout/LayOutP";
 import Panel from "../screens/Panel/Panel";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -46,6 +43,7 @@ function App() {
 
   return (
     <>
+      <toast />
       <RouterProvider router={router} />
     </>
   );
