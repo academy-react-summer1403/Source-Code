@@ -14,7 +14,7 @@ function Panel() {
   const [count, setCount] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <div className="bg-indigo-50">
+    <div className="bg-indigo-50 h-fit">
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -234,7 +234,7 @@ function Panel() {
           </div>
         </Dialog>
       </Transition.Root>
-      <div className="flex h-screen mx-auto w-min text-asBlack-300">
+      <div className="flex  mx-auto w-min text-asBlack-300">
         <div className="hidden lg:inset-y-0 lg:block lg:w-64 mx-10">
           <div>
             <div className="flex-col lg:col-span-4 overflow-y-auto ">
@@ -323,7 +323,7 @@ function Panel() {
                     className="mr-2 cursor-pointer"
                   >
                     {" "}
-                    اطلاعات کاربری{" "}
+                    ویرایش پروفایل{" "}
                   </div>
                 </div>
                 <div
@@ -426,7 +426,7 @@ function Panel() {
               {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
             </button>
           </div>
-          <div className="z-30 lg:w-[900px] pb-10 w-screen border lg:ml-10 mx-auto lg:my-10 rounded-2xl shadow-xl">
+          <div className="z-30 lg:w-[900px] bg-white pb-10 w-screen border lg:ml-10 mx-auto lg:my-10 rounded-2xl shadow-xl">
             {count === 1 && <Dashbord />}
             {count === 2 && <EditProfile />}
             {count === 3 && <MyCourses />}

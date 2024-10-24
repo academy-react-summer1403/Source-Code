@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../../components/Card/Card";
+import Card1 from "../../components/Card/Card1";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Accordion from "@mui/material/Accordion";
@@ -13,6 +14,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
 const Courses = () => {
+    const [count, setCount] = useState(1);
     return (
         <div className="bg-slate-50">
             <div className="w-11/12 h-80 mx-auto my-7 flex">
@@ -159,17 +161,22 @@ const Courses = () => {
                 <div className="w-5/6">
                     <div className=" h-20 flex">
                         <div className="h-1/2 w-1/12 my-[1.5%] mr-4 flex bg-slate-200 gap-3 rounded-lg">
-                            <div className="w-1/3 h-3/4 my-auto rounded-lg mr-2 bg-white">
-                                <img
-                                    className="h-[90%] mx-auto my-[1px]"
-                                    src="public/grid-2.png"
-                                />
+                            <div onClick={() => setCount(1)} className={(count === 1 ? "bg-white" : "") + " h-3/4 my-auto rounded-lg mr-2 p-0.5 cursor-pointer"} >
+                                <svg className="mx-auto my-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.03003 8.5H22" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.03003 15.5H22" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M8.51001 21.9898V2.00977" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M15.51 21.9898V2.00977" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </div>
-                            <div className="w-1/3 h-3/4 rounded-lg my-auto">
-                                <img
-                                    className="h-[90%] mx-auto my-[1px]"
-                                    src="public/grid-1.png"
-                                />
+                            <div onClick={() => setCount(2)} className={(count === 2 ? "bg-white" : "") + " h-3/4 rounded-lg my-auto p-0.5 cursor-pointer"}>
+                                <svg className="mx-auto my-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2.03003 8.5H22" stroke="#263238" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.03003 15.5H22" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+
                             </div>
                         </div>
                         <div className="h-1/2 my-auto w-1/2 mr-32 flex">
@@ -200,7 +207,8 @@ const Courses = () => {
                         <div></div>
                     </div>
                     <div>
-                        <Card />
+                        {count === 1 && <Card />}
+                        {count === 2 && <Card1 />}
                     </div>
                     <div dir="ltr" className="h-12 w-1/2 mx-auto">
                         <Pagination
@@ -211,7 +219,7 @@ const Courses = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
