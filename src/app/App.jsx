@@ -6,6 +6,7 @@ import LayOut from "../components/layout/LayOut";
 import LoginModal from "../components/form/LoginModal";
 import ForgetPassword from "../components/form/ForgetPassword";
 import EnterCode from "../components/form/EnterCode";
+import { Toaster } from "react-hot-toast";
 function App() {
   // const [count, setCount] = useState(0);
 
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <RouterProvider router={router} />
     </>
   );
