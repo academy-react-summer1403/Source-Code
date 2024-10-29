@@ -10,9 +10,12 @@ import * as Yup from "yup";
 import axios from "axios";
 import { LoginUser } from "../../core/services/api/login-user";
 import toast from "react-hot-toast";
+import Register from '../Register/Register';
 
 export default function LoginModal({ isOpen, onClose }) {
-  // const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
+  // const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  // const openRModal = () => setIsModalOpen(true);
+  // const closeRModal = () => setIsModalOpen(false);
   if (!isOpen) return null;
 
   const navigate = useNavigate();
@@ -147,9 +150,15 @@ export default function LoginModal({ isOpen, onClose }) {
                   <div className="forget items-center text-center">
                     <p className="awi axa axs ayu text-xs">
                       حساب کاربری ندارید؟{" "}
-                      <a href="#" className="axj azl bmo text-xs underline">
+                      <a className="axj azl bmo text-xs underline">
                         ثبت نام
                       </a>
+                    {/* {isRegisterOpen && (
+                  <Register
+                    isOpen={isRegisterOpen}
+                    onClose={() => setIsRegisterOpen(true)}
+                  />
+                )} */}
                     </p>
                   </div>
                 </div>

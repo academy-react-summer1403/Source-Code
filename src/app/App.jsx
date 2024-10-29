@@ -6,6 +6,8 @@ import LayOutB from "../components/layout/LayOutB";
 import Courses from "../screens/Courses/Courses";
 import LayOutP from "../components/layout/LayOutP";
 import Panel from "../screens/Panel/Panel";
+import Blog from "../screens/Blog/Blog";
+import Register from "../components/Register/Register";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +29,10 @@ function App() {
           path: "/courses",
           element: <Courses />,
         },
+        {
+          path: "/blog",
+          element: <Blog />,
+        },
       ],
     },
     {
@@ -36,6 +42,10 @@ function App() {
         {
           path: "/Panel",
           element: <Panel />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
         },
       ],
     },
