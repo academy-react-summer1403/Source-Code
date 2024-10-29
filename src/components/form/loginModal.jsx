@@ -3,8 +3,9 @@
 // import React from "react";
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import ForgetPassword from "../form/ForgetPassword";
+// import { useNavigate } from "react-router-dom";
+// import ForgetPassword from "../form/ForgetPassword";
+import ForgetPass1 from "./ForgetPass1";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -12,13 +13,12 @@ import { LoginUser } from "../../core/services/api/login-user";
 import toast from "react-hot-toast";
 
 export default function LoginModal({ isOpen, onClose }) {
-  // const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
   if (!isOpen) return null;
 
-  const navigate = useNavigate();
-  const goToAbout = () => {
-    navigate("/EnterCode");
-  };
+  // const navigate = useNavigate();
+  // const goToAbout = () => {
+  //   navigate("/EnterCode");
+  // };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,14 +37,14 @@ export default function LoginModal({ isOpen, onClose }) {
 
   const handleLogin = async (values) => {
     const { response, isSuccess, message } = await LoginUser(values);
-    isSuccess ? toast.success(message) : toast.error(message);
+    isSuccess ? toast.success(message) && onClose() : toast.error(message);
   };
 
   return (
     <>
       {isModalOpen ? (
         <div className="w-full h-full fixed z-[99] bg-[rgba(0,0,0,0.6)] left-0 top-0">
-          <ForgetPassword isOpen={isModalOpen} onClose={closeModal} />
+          <ForgetPass1 isOpen={isModalOpen} onClose={closeModal} />
         </div>
       ) : (
         <Formik
@@ -68,7 +68,7 @@ export default function LoginModal({ isOpen, onClose }) {
                     >
                       <img
                         className="cross w-5 h-5 mx-auto"
-                        src="/src/components/form/icons8-cross.svg"
+                        src="/public/icons8-cross.svg"
                       ></img>
                     </button>
                   </div>
@@ -141,7 +141,7 @@ export default function LoginModal({ isOpen, onClose }) {
                       // disabled={isSubmitting}
                       className="mb ud zu aen akl asc asn axa axj axs bbl bkb bqh bqi bqk bqr bg-blue-500 text-cyan-50 text-xs rounded-full p-3 px-10 hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
                     >
-                      دریافت کد تائید
+                      ورود به حساب
                     </button>
                   </div>
                   <div className="forget items-center text-center">

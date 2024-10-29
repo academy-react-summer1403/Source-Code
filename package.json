@@ -14,6 +14,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@headlessui/react": "^2.1.10",
+    "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "axios": "^1.6.8",
     "formik": "^2.4.6",
@@ -22,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.22.3",
+    "react-swiper": "^0.1.5",
     "swiper": "^11.1.14",
     "yup": "^1.4.0"
   },

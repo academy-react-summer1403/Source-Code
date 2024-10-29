@@ -6,6 +6,8 @@ import LayOutB from "../components/layout/LayOutB";
 import Courses from "../screens/Courses/Courses";
 import LayOutP from "../components/layout/LayOutP";
 import Panel from "../screens/Panel/Panel";
+import CoursePage from "../components/CourseDetails/CoursePage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +29,10 @@ function App() {
           path: "/courses",
           element: <Courses />,
         },
+        {
+          path: "/CourseDetails",
+          element: <CoursePage />,
+        },
       ],
     },
     {
@@ -43,7 +49,7 @@ function App() {
 
   return (
     <>
-      <toast />
+      <Toaster />
       <RouterProvider router={router} />
     </>
   );

@@ -1,51 +1,45 @@
+import axios from "axios";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-export default function ForgetPassword({ isOpen, onClose }) {
+export default function ForgetPassword({ isOpen, onClose, ConfigValue }) {
   if (!isOpen) return null;
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد")
+      .min(8, "رمز عبور حداقل باید ۸ کاراکتر باشد")
       .required("رمز عبور الزامی است"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "رمزهای عبور باید مطابقت داشته باشند")
-      .required("تکرار رمز عبور الزامی است"),
+      .oneOf([Yup.ref("password"), null], "رمز عبور مطابقت ندارد")
+      .required("تأیید رمز عبور الزامی است"),
   });
 
   const handleSubmit = async (fields) => {
     try {
-      const response = await fetch(
-        "https://classapi.sepehracademy.ir/api/Sign/ForgetPassword",
+      const resetLink = await ConfigValue();
+      const response = await axios.post(
+        "https://classapi.sepehracademy.ir/api/Sign/Reset",
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(fields),
+          userId: fields.userId,
+          resetValue: resetLink,
+          newPassword: fields.newPassword,
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-
-      const data = await response.json();
-      alert("SUCCESS!! :-)\n\n" + JSON.stringify(data, null, 4));
+      if (response.status !== 200) {
+        throw new Error("مشکلی رخ داده است");
+      } else toast.success("رمز عبور باموفقیت تنظیم شد");
+      onClose();
     } catch (error) {
-      console.error("Error:", error);
-      alert("Error: " + error.message);
+      toast.error("خطا: " + error.message);
     }
   };
 
   return (
     <Formik
-      initialValues={{
-        password: "",
-        confirmPassword: "",
-        acceptTerms: false,
-      }}
+      initialValues={{ userId: "", newPassword: "", confirmPassword: "" }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
@@ -64,30 +58,31 @@ export default function ForgetPassword({ isOpen, onClose }) {
               >
                 <img
                   className="cross w-5 h-5 mx-auto"
-                  src="/src/components/form/icons8-cross.svg"
+                  src="/public/icons8-cross.svg"
                 ></img>
               </button>
             </div>
             <div className="f-1 mt-6 p-1">
               <Field
                 className=" appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs"
-                id="email"
-                name="email"
+                name="userId"
                 type="text"
                 placeholder="ایمیل یا شماره موبایل"
               ></Field>
             </div>
             <div className="f-2 py-1">
               <Field
-                id="password"
+                name="newPassword"
                 type="password"
                 className={`appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs ${
-                  errors.password && touched.password ? "border-red-500" : ""
+                  errors.newPassword && touched.newPassword
+                    ? "border-red-500"
+                    : ""
                 }`}
                 placeholder="رمز عبور"
               ></Field>
               <ErrorMessage
-                name="password"
+                name="newPassword"
                 component="div"
                 className="text-red-500 text-xs mt-1"
               />
@@ -97,7 +92,7 @@ export default function ForgetPassword({ isOpen, onClose }) {
                 id="confirmPassword"
                 type="password"
                 className={`appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs ${
-                  errors.confirmPassword && touched.confirmPassword
+                  errors.resetValue && touched.resetValue
                     ? "border-red-500"
                     : ""
                 }`}
@@ -111,8 +106,7 @@ export default function ForgetPassword({ isOpen, onClose }) {
             </div>
             <div className="check flex flex-nowrap justify-center py-2">
               <Field
-                id="remember-me"
-                name="remember-me"
+                name="rememberMe"
                 type="checkbox"
                 className="oh sn aeg agr azl bpa"
               />
