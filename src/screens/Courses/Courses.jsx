@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../../components/Card/Card";
 import Card1 from "../../components/Card/Card1";
 import Pagination from "@mui/material/Pagination";
@@ -12,9 +12,14 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import SortFilter from "../../components/SorfFilter/SortFilter";
+
+
 
 const Courses = () => {
     const [count, setCount] = useState(1);
+
+
     return (
         <div className="bg-slate-50">
             <div className="w-11/12 h-80 mx-auto my-7 flex">
@@ -51,8 +56,8 @@ const Courses = () => {
                 <div className="w-1/6 shadow-2xl h-max rounded-3xl ml-5 bg-white ">
                     <div className="bg-gray-200 mx-auto w-10/12 mt-6 font-extralight py-1.5 pr-3 my-2 rounded-lg flex">
                         <svg width="16" height="16" className="my-auto ml-1" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.49998 1.75H15.5C16.4166 1.75 17.1666 2.5 17.1666 3.41667V5.25C17.1666 5.91667 16.75 6.75 16.3333 7.16667L12.75 10.3333C12.25 10.75 11.9166 11.5833 11.9166 12.25V15.8333C11.9166 16.3333 11.5833 17 11.1666 17.25L9.99998 18C8.91665 18.6667 7.41665 17.9167 7.41665 16.5833V12.1667C7.41665 11.5833 7.08331 10.8333 6.74998 10.4167L3.58331 7.08333C3.16665 6.66667 2.83331 5.91667 2.83331 5.41667V3.5C2.83331 2.5 3.58331 1.75 4.49998 1.75Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M9.10833 1.75L5 8.33333" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M4.49998 1.75H15.5C16.4166 1.75 17.1666 2.5 17.1666 3.41667V5.25C17.1666 5.91667 16.75 6.75 16.3333 7.16667L12.75 10.3333C12.25 10.75 11.9166 11.5833 11.9166 12.25V15.8333C11.9166 16.3333 11.5833 17 11.1666 17.25L9.99998 18C8.91665 18.6667 7.41665 17.9167 7.41665 16.5833V12.1667C7.41665 11.5833 7.08331 10.8333 6.74998 10.4167L3.58331 7.08333C3.16665 6.66667 2.83331 5.91667 2.83331 5.41667V3.5C2.83331 2.5 3.58331 1.75 4.49998 1.75Z" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M9.10833 1.75L5 8.33333" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         {" "}
                         فیلتر{" "}
@@ -64,7 +69,6 @@ const Courses = () => {
                                 // expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1-content"
                                 id="panel1-header"
-                                className="font-light"
                             >
                                 دسته بندی ها
                             </AccordionSummary>
@@ -163,18 +167,18 @@ const Courses = () => {
                         <div className="h-1/2 w-1/12 my-[1.5%] mr-4 flex bg-slate-200 gap-3 rounded-lg">
                             <div onClick={() => setCount(1)} className={(count === 1 ? "bg-white" : "") + " h-3/4 my-auto rounded-lg mr-2 p-0.5 cursor-pointer"} >
                                 <svg className="mx-auto my-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M2.03003 8.5H22" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M2.03003 15.5H22" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M8.51001 21.9898V2.00977" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M15.51 21.9898V2.00977" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2.03003 8.5H22" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2.03003 15.5H22" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M8.51001 21.9898V2.00977" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M15.51 21.9898V2.00977" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
                             <div onClick={() => setCount(2)} className={(count === 2 ? "bg-white" : "") + " h-3/4 rounded-lg my-auto p-0.5 cursor-pointer"}>
                                 <svg className="mx-auto my-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M2.03003 8.5H22" stroke="#263238" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M2.03003 15.5H22" stroke="#263238" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.03003 8.5H22" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2.03003 15.5H22" stroke="#263238" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
 
                             </div>
@@ -204,18 +208,18 @@ const Courses = () => {
                                 />
                             </svg>
                         </div>
-                        <div></div>
+                        <div className="h-min mr-12 my-auto w-1/6">
+                            <SortFilter />
+                        </div>
                     </div>
                     <div>
-                        {count === 1 && <Card />}
-                        {count === 2 && <Card1 />}
+                    {count === 1 && <Card />}
+                    {count === 2 && <Card1 />}
                     </div>
-                    <div dir="ltr" className="h-12 w-1/2 mx-auto">
-                        <Pagination
-                            className="mx-auto mt-2 w-max"
-                            count={10}
-                            color="primary"
-                        />
+                    <div className="w-min mx-auto">
+                        <button className="bg-sky-500 w-max py-2 px-4 rounded-xl text-white">
+                            مشاهده بیشتر
+                        </button>
                     </div>
                 </div>
             </div>
