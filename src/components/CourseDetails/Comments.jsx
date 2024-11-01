@@ -25,9 +25,21 @@ export default function Comments() {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([
     { name: "محمد زمانی", text: "خیلی آموزش خوبی بود.", time: "1 ساعت پیش" },
-    { name: "سارا کریمی", text: "مطالب کاملا واضح بود و کمک بزرگی برای من بود.", time: "2 ساعت پیش" },
-    { name: "کمال اسدی", text: "من چیزهای جدیدی یاد گرفتم. ممنون.", time: "3 ساعت پیش" },
-    { name: "محسن حسنی", text: "لطفا مطالب بیشتری قرار دهید.", time: "4 ساعت پیش" },
+    {
+      name: "سارا کریمی",
+      text: "مطالب کاملا واضح بود و کمک بزرگی برای من بود.",
+      time: "2 ساعت پیش",
+    },
+    {
+      name: "کمال اسدی",
+      text: "من چیزهای جدیدی یاد گرفتم. ممنون.",
+      time: "3 ساعت پیش",
+    },
+    {
+      name: "محسن حسنی",
+      text: "لطفا مطالب بیشتری قرار دهید.",
+      time: "4 ساعت پیش",
+    },
   ]);
 
   const handleTabChange = (event, newValue) => {
@@ -36,17 +48,20 @@ export default function Comments() {
 
   const handleCommentSubmit = () => {
     if (commentText.trim()) {
-      setComments([{ name: "کاربر جدید", text: commentText, time: "همین حالا" }, ...comments]);
+      setComments([
+        { name: "کاربر جدید", text: commentText, time: "همین حالا" },
+        ...comments,
+      ]);
       setCommentText("");
     }
   };
 
   // Sample data for previews
   const previews = [
-    { title: "جلسه اول: HTML چیست؟", duration: "56 mins" },
-    { title: "جلسه دوم: تگ‌های مهم HTML", duration: "4 hrs 38 mins" },
-    { title: "جلسه سوم: Meta", duration: "7 mins" },
-    { title: "جلسه چهارم: Body", duration: "14 mins" },
+    { title: "فصل اول: HTML چیست؟", duration: "56 mins" },
+    { title: "فصل دوم: تگ‌های مهم HTML", duration: "4 hrs 38 mins" },
+    { title: "فصل سوم: Meta", duration: "7 mins" },
+    { title: "فصل چهارم: Body", duration: "14 mins" },
     { title: "جلسه پنجم: Script & Style", duration: "20 mins" },
     { title: "جلسه ششم: Properties و Events", duration: "2 hrs 40 mins" },
     { title: "جلسه هفتم: آشنایی با CSS", duration: "3 hrs 52 mins" },
@@ -82,7 +97,7 @@ export default function Comments() {
               به روش کدنویسی پیشرفته و تمیز.
             </Typography>
             <Typography variant="h5" component="h3" className="font-semibold">
-              اموزش رایگان html برای چه کسانی مناسب است ؟
+              آموزش رایگان html برای چه کسانی مناسب است ؟
             </Typography>
             <Typography color="textSecondary">
               محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته
@@ -137,60 +152,67 @@ export default function Comments() {
         </TabPanel>
 
         <TabPanel value={selectedTab} index={2}>
-        <Box className="flex flex-col gap-4">
-          <Typography variant="h5" component="h3" className="font-semibold">
-            نظرات کاربران
-          </Typography>
-          
-          {/* Comment Input */}
-          <Box display="flex" flexDirection="column" gap={2}>
-            <TextField
-              label="نظر خود را بنویسید"
-              multiline
-              rows={3}
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              variant="outlined"
-              fullWidth
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleCommentSubmit}
-              style={{ alignSelf: "flex-end" }}
-            >
-              ارسال
-            </Button>
+          <Box className="flex flex-col gap-4">
+            <Typography variant="h5" component="h3" className="font-semibold">
+              نظرات کاربران
+            </Typography>
+
+            {/* Comment Input */}
+            <Box display="flex" flexDirection="column" gap={2}>
+              <TextField
+                label="نظر خود را بنویسید"
+                multiline
+                rows={3}
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+                variant="outlined"
+                fullWidth
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleCommentSubmit}
+                style={{ alignSelf: "flex-end" }}
+              >
+                ارسال
+              </Button>
+            </Box>
+            {/* Comments List */}
+            <List>
+              {comments.map((comment, index) => (
+                <Box key={index}>
+                  <ListItem alignItems="flex-start">
+                    <ListItemAvatar>
+                      <Avatar>{comment.name[0]}</Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <Typography variant="subtitle1" component="span">
+                          {comment.name}{" "}
+                          <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="span"
+                          >
+                            {comment.time}
+                          </Typography>
+                        </Typography>
+                      }
+                      secondary={
+                        <Typography variant="body2" color="textPrimary">
+                          {comment.text}
+                        </Typography>
+                      }
+                    />
+                  </ListItem>
+                  {index < comments.length - 1 && (
+                    <Divider variant="inset" component="li" />
+                  )}
+                </Box>
+              ))}
+            </List>
           </Box>
-           {/* Comments List */}
-           <List>
-            {comments.map((comment, index) => (
-              <Box key={index}>
-                <ListItem alignItems="flex-start">
-                  <ListItemAvatar>
-                    <Avatar>{comment.name[0]}</Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={
-                      <Typography variant="subtitle1" component="span">
-                        {comment.name} <Typography variant="body2" color="textSecondary" component="span">{comment.time}</Typography>
-                      </Typography>
-                    }
-                    secondary={
-                      <Typography variant="body2" color="textPrimary">
-                        {comment.text}
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-                {index < comments.length - 1 && <Divider variant="inset" component="li" />}
-              </Box>
-            ))}
-          </List>
-        </Box>
-      </TabPanel>
-
-
+        </TabPanel>
       </div>
     </>
   );

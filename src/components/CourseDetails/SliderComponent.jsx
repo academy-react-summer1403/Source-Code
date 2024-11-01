@@ -84,7 +84,7 @@ export default function ResponsiveSliderComponent() {
                 className="w-full h-[55%] object-cover rounded-3xl"
               />
               <p className="text-start font-medium">{item.title}</p>
-              <div className="bg-gray-300 flex flex-row justify-between items-center h-8 w-[90%] rounded-2xl p-2">
+              <div className="bg-gray-200 flex flex-row justify-between items-center h-8 w-[90%] rounded-2xl p-2">
                 <div className="flex flex-row gap-1 font-serif">
                   <img
                     className="w-4 h-4"

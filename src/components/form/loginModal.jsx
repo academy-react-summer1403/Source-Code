@@ -126,11 +126,11 @@ export default function LoginModal({ isOpen, onClose }) {
                       رمز عبور را فراموش کردم
                     </a>
                     {/* {isForgetPasswordOpen && (
-                  <ForgetPassword
-                    isOpen={isForgetPasswordOpen}
-                    onClose={() => setIsForgetPasswordOpen(true)}
-                  />
-                )} */}
+                      <ForgetPassword
+                        isOpen={isForgetPasswordOpen}
+                        onClose={() => setIsForgetPasswordOpen(true)}
+                      />
+                    )} */}
                   </div>
                   {errors.apiError && (
                     <div className="text-red-500 text-xs mt-1">
