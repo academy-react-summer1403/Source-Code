@@ -10,7 +10,12 @@ import CoursePage from "../components/CourseDetails/CoursePage";
 import { Toaster } from "react-hot-toast";
 import Blog from "../screens/Blog/Blog";
 import Register from "../components/Register/Register";
-
+import { LoginUser } from "../core/services/api/login-user";
+import { useEffect } from "react";
+import { setItem } from "../core/services/common/storage.services";
+import { getProfile } from "../core/services/api/user";
+import ForgetPassword from "../components/form/ForgetPassword";
+// import TheRegister from "../components/Register/TheRegister";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +28,10 @@ function App() {
           element: <Landing />,
         },
       ],
+    },
+    {
+      path: "/resetpassword/:configValue",
+      element: <ForgetPassword />,
     },
     {
       path: "/",
@@ -57,6 +66,31 @@ function App() {
       ],
     },
   ]);
+
+  const loginUser = async () => {
+    const userObj = { phoneOrGmail: "", password: "", rememberMe: true };
+    const user = await LoginUser(userObj);
+
+    setItem("token", user.token);
+  };
+
+  const getProfileFunc = async () => {
+    const profile = await getProfile();
+    if (profile) {
+      console.log("User profile:", profile);
+    } else {
+      console.log("Failed to fetch profile");
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      loginUser();
+    } else {
+      getProfileFunc();
+    }
+  }, []);
 
   return (
     <>

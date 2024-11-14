@@ -1,144 +1,108 @@
-import { useState, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { useState, Fragment } from "react";
+import { Formik, Form, Field } from "formik";
+// import * as Yup from "yup";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import TheRegister from "../Register/TheRegister";
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 
-export default function EnterCodeForm({
-  onSubmitCode,
-  onResendCode,
-  onRegister,
-}) {
-  const [timeLeft, setTimeLeft] = useState(120);
-  const [canResend, setCanResend] = useState(false);
-
-  useEffect(() => {
-    if (timeLeft > 0) {
-      const timerId = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timerId);
-    } else {
-      setCanResend(true);
-    }
-  }, [timeLeft]);
-
-  const resendCode = () => {
-    if (canResend) {
-      onResendCode();
-      setTimeLeft(120);
-      setCanResend(false);
-    }
+// eslint-disable-next-line no-unused-vars
+export default function EnterCodeForm({ isOpen, onClose }) {
+  const [isTheRegisterOpen, SetIsTheRegisterOpen] = useState(false);
+  // const openRegister = () => SetIsTheRegisterOpen(true);
+  const openRegister = () => {
+    SetIsTheRegisterOpen(true);
+    console.log("TheRegister modal opened:", isTheRegisterOpen); // بررسی وضعیت
   };
 
-  const validationSchema = Yup.object({
-    verificationCode: Yup.string()
-      .required("کد تایید الزامی است")
-      .length(5, "کد تایید باید ۵ رقمی باشد"),
-  });
+  const [timeLeft, setTimeLeft] = useState(120);
+  // const [canResend, setCanResend] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [verificationCode, setVerificationCode] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+
+  const params = useParams();
+  const verrify = async (code) => {
+    const response = await axios.post(
+      "https://classapi.sepehracademy.ir/api/Sign/VerifyMessage",
+      code
+    );
+    if (response.status === 200) {
+      openRegister();
+    }
+    console.log(response);
+    return response;
+  };
+  const handleSubmit = async (values) => {
+    const phone = localStorage.getItem("phoneNumber");
+    const obj = {
+      verifyCode: values.verifyCode,
+      phoneNumber: phone,
+    };
+    const result = await verrify(obj);
+    console.log(values);
+  };
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const formattedTime = `${minutes.toString().padStart(2, "0")} : ${seconds
+    .toString()
+    .padStart(2, "0")}`;
 
   return (
-    <div
-      className="container bg-slate-50 w-full max-w-xs flex justify-center rounded-2xl p-6"
-      dir="rtl"
-    >
+    <Fragment>
+      {/* <ToastContainer /> */}
       <Formik
-        initialValues={{ verificationCode: "" }}
-        validationSchema={validationSchema}
-        onSubmit={(values) => onSubmitCode(values.verificationCode)}
+        initialValues={{ verifyCode: "" }}
+        onSubmit={(e) => handleSubmit(e)}
       >
-        {({ isSubmitting }) => (
-          <Form
-            className="container bg-slate-50 z-10 p-4 rounded-2xl shadow-inner w-full max-w-xs flex flex-col justify-center absolute top-[30%] left-[40%] transform-translate(-50%, -50%)"
-            dir="rtl"
-          >
-            <div className="mb-4 ">
-              <div className="flex flex-row justify-between gap-8">
-                <p className="font-semibold text-center">کد تاییدیه</p>
-                <button
-                  type="button"
-                  className="text-white bg-gray-200 h-7 w-7 rounded-lg items-center hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
-                >
-                  <img
-                    className="cross w-5 h-5 mx-auto"
-                    src="/src/components/form/icons8-cross.svg"
-                  ></img>
-                </button>
-              </div>
-              <div className="code flex justify-center gap-2 h-14">
-                <Field
-                  name="verificationCode1"
-                  type="text"
-                  placeholder=""
-                  className="border rounded-2xl w-11 py-2 px-3 mt-4 text-xs text-gray-700"
-                />
-                <Field
-                  name="verificationCode2"
-                  type="text"
-                  placeholder=""
-                  className="border rounded-2xl w-11 py-2 px-3 mt-4 text-xs text-gray-700"
-                />
-                <Field
-                  name="verificationCode3"
-                  type="text"
-                  placeholder=""
-                  className="border rounded-2xl w-11 py-2 px-3 mt-4 text-xs text-gray-700"
-                />
-                <Field
-                  name="verificationCode4"
-                  type="text"
-                  placeholder=""
-                  className="border rounded-2xl w-11 py-2 px-3 mt-4 text-xs text-gray-700"
-                />
-                <Field
-                  name="verificationCode5"
-                  type="text"
-                  placeholder=""
-                  className="border rounded-2xl w-11 py-2 px-3 mt-4 text-xs text-gray-700"
-                />
-                <ErrorMessage
-                  name="verificationCode"
-                  component="div"
-                  className="text-red-500 text-xs mt-1"
-                />
-              </div>
+        {/* <div className="w-full h-full fixed z-[99] bg-[rgba(0,0,0,0.6)] left-0 top-0"> */}
+        <Form
+          className="container bg-slate-50 z-[99] w-full max-w-xs flex justify-center rounded-2xl fixed top-[30%] left-[40%] transform-translate(-50%, -50%)"
+          dir="rtl"
+        >
+          <div className="p-6 border-gray-800 rounded-2xl">
+            <div className="flex flex-row justify-between gap-8">
+              <p className="enter font-semibold h-4"> ساخت حساب کاربری</p>
             </div>
-            <div className="text-center mb-4">
-              {canResend ? (
-                <button
-                  type="button"
-                  onClick={resendCode}
-                  className="text-blue-500 text-xs underline"
-                >
-                  ارسال مجدد کد
-                </button>
-              ) : (
-                <p className="text-xs">{timeLeft}</p>
-              )}
+            <div className="f-1 mt-6 p-1">
+              <Field
+                className=" appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs"
+                name="verifyCode"
+                type="text"
+                placeholder="شماره موبایل"
+              />
             </div>
-
-            <div className="text-center">
+            <div className="btn-login py-3 items-center text-center">
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="bg-blue-500 text-white text-xs rounded-full p-2 px-6"
+                className="mb ud zu aen akl asc asn axa axj axs bbl bkb bqh bqi bqk bqr bg-blue-500 text-cyan-50 text-xs rounded-full p-3 px-10 hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
               >
-                ساخت حساب کاربری
+                دریافت کد تایید
               </button>
+              {isTheRegisterOpen && (
+                <TheRegister
+                  isOpen={isTheRegisterOpen}
+                  onClose={() => SetIsTheRegisterOpen(false)}
+                />
+              )}
             </div>
-
-            <div className="text-center mt-4">
-              <p className="text-xs">
-                کد ارسال نشد؟{" "}
-                <button
-                  type="button"
-                  onClick={onRegister}
-                  className="text-blue-500 underline"
-                >
-                  ارسال دوباره
-                </button>
+            <div className="forget items-center text-center">
+              <p className="awi axa axs ayu text-xs">
+                حساب کاربری دارید؟{" "}
+                <a className="axj azl bmo text-xs underline">{formattedTime}</a>
               </p>
             </div>
-          </Form>
-        )}
+          </div>
+        </Form>
+        {/* </div> */}
       </Formik>
-    </div>
+    </Fragment>
   );
 }

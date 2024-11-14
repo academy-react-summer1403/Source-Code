@@ -3,7 +3,7 @@ import axios from "axios";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-import ResetPassword from "./ResetPassword";
+import ForgetPassword from "./ForgetPassword";
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 
 export default function ForgetPass1({ isOpen, onClose }) {
@@ -12,7 +12,7 @@ export default function ForgetPass1({ isOpen, onClose }) {
   const [configValue, setConfigValue] = useState("");
 
   const handleOpenResetPassword = () => setResetPasswordOpen(true);
-  const handleCloseResetPassword = () => setResetPasswordOpen(false);
+  // const handleCloseResetPassword = () => setResetPasswordOpen(false);
   if (!isOpen) return null;
 
   const validationSchema = Yup.object().shape({
@@ -46,7 +46,6 @@ export default function ForgetPass1({ isOpen, onClose }) {
       <Formik
         initialValues={{
           email: "",
-          baseUrl: "",
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -92,16 +91,21 @@ export default function ForgetPass1({ isOpen, onClose }) {
                 >
                   دریافت کد تائید
                 </button>
-                <ResetPassword
+                {/* <ForgetPassword
                   isOpen={isResetPasswordOpen}
                   onClose={handleCloseResetPassword}
-                  ConfigValue={configValue}
-                />
+                /> */}
               </div>
             </div>
           </Form>
         )}
       </Formik>
+      {isResetPasswordOpen && (
+        <ForgetPassword
+          isOpen={isResetPasswordOpen}
+          onClose={() => setResetPasswordOpen(false)}
+        />
+      )}
     </>
   );
 }

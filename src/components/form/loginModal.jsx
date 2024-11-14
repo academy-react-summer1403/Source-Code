@@ -3,7 +3,7 @@
 // import React from "react";
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import panel from "../../screens/Panel/Panel";
 // import ForgetPassword from "../form/ForgetPassword";
 import ForgetPass1 from "./ForgetPass1";
@@ -12,15 +12,17 @@ import * as Yup from "yup";
 import axios from "axios";
 import { LoginUser } from "../../core/services/api/login-user";
 import toast from "react-hot-toast";
-import Register from '../Register/Register';
+import Register from "../Register/Register";
 
 export default function LoginModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
-  const navigate = useNavigate();
-  const goToAbout = () => {
-    navigate("/Panel");
-  };
+  // const navigate = useNavigate();
+  // const goToAbout = () => {
+  //   navigate("/Panel");
+  // };
+  const [isRegisterOpen, setIsRegisterOpen] = useState();
+  const openRegister = () => setIsRegisterOpen(true);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -38,10 +40,8 @@ export default function LoginModal({ isOpen, onClose }) {
   });
 
   const handleLogin = async (values) => {
-    const { response, isSuccess, message } = await LoginUser(values);
-    isSuccess
-      ? toast.success(message) && onClose() && goToAbout()
-      : toast.error(message);
+    const { isSuccess, message } = await LoginUser(values);
+    isSuccess ? toast.success(message) && onClose() : toast.error(message);
   };
 
   return (
@@ -140,7 +140,7 @@ export default function LoginModal({ isOpen, onClose }) {
                   )}
                   <div className="btn-login py-3 items-center text-center">
                     <button
-                      onClick={goToAbout}
+                      // onClick={goToAbout}
                       type="submit"
                       // disabled={isSubmitting}
                       className="mb ud zu aen akl asc asn axa axj axs bbl bkb bqh bqi bqk bqr bg-blue-500 text-cyan-50 text-xs rounded-full p-3 px-10 hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
@@ -151,15 +151,20 @@ export default function LoginModal({ isOpen, onClose }) {
                   <div className="forget items-center text-center">
                     <p className="awi axa axs ayu text-xs">
                       حساب کاربری ندارید؟{" "}
-                      <a className="axj azl bmo text-xs underline">
+                      <a
+                        onClick={() => {
+                          openRegister();
+                        }}
+                        className="axj azl bmo text-xs underline"
+                      >
                         ثبت نام
                       </a>
-                    {/* {isRegisterOpen && (
-                  <Register
-                    isOpen={isRegisterOpen}
-                    onClose={() => setIsRegisterOpen(true)}
-                  />
-                )} */}
+                      {isRegisterOpen && (
+                        <Register
+                          isOpen={isRegisterOpen}
+                          onClose={() => setIsRegisterOpen(true)}
+                        />
+                      )}
                     </p>
                   </div>
                 </div>
