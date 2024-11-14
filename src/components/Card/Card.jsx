@@ -1,60 +1,22 @@
 import React, { useEffect, useState } from "react"
 import { getCourseListWithPagination } from "../../core/services/api/courselist"
 import { dateModified } from "./datemod"
+import { useNavigate } from "react-router-dom"
 
-const products = [
-    // {
-    //     id: 1,
-    //     name: 'دوره جامع HTML 5 صفر تا صد',
-    //     // href: '#',
-    //     lesen: '204درس',
-    //     time: '14ساعت',
-    //     date: '1آذر403',
-    //     tname: 'دکتر بحرالعلوم',
-    //     snumber: '254',
-    //     price: '500000',
-    //     imageSrc: 'public/Rectangle 124.png',
-    // },
-    // {
-    //     id: 2,
-    //     name: 'دوره جامع HTML 5 صفر تا صد',
-    //     // href: '#',
-    //     lesen: '204درس',
-    //     time: '14ساعت',
-    //     date: '1آذر403',
-    //     tname: 'دکتر بحرالعلوم',
-    //     snumber: '254',
-    //     price: '500000',
-    //     imageSrc: 'public/Rectangle 124.png',
-    // },
-    // {
-    //     id: 3,
-    //     name: 'دوره جامع HTML 5 صفر تا صد',
-    //     // href: '#',
-    //     lesen: '204درس',
-    //     time: '14ساعت',
-    //     date: '1آذر403',
-    //     tname: 'دکتر بحرالعلوم',
-    //     snumber: '254',
-    //     price: '500000',
-    //     imageSrc: 'public/Rectangle 124.png',
-    // },
-    // {
-    //     id: 4,
-    //     name: 'دوره جامع HTML 5 صفر تا صد',
-    //     // href: '#',
-    //     lesen: '204درس',
-    //     time: '14ساعت',
-    //     date: '1آذر403',
-    //     tname: 'دکتر بحرالعلوم',
-    //     snumber: '254',
-    //     price: '500000',
-    //     imageSrc: 'public/Rectangle 124.png',
-    // },
-]
 
 
 const Card = () => {
+
+    const naviget = useNavigate()
+
+    const [selectCourseid , setselectCourseid] = useState(null)
+
+    const handleCourseClick=(courseId)=> {
+        setselectCourseid(courseId);
+        naviget (`/CourseDetails/${courseId}`);
+
+        console.log(courseId)
+    } 
 
     const [courselist , setcourses] = useState([])
 
@@ -76,7 +38,7 @@ const Card = () => {
                 <h2 className="sr-only">Products</h2>
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
                     {courselist.map((courselist) => (
-                        <a key={courselist.courseId} href={courselist.href} className="h-max bg-white rounded-lg group">
+                        <a key={courselist.courseId} onClick={() => handleCourseClick(courselist.courseId)} className="h-max bg-white rounded-lg group" >
                             <div className="aspect-h-1 px-4 aspect-w-1 w-full overflow-hidden rounded-3xl mt-2 xl:aspect-h-8 xl:aspect-w-7">
                                 <img
                                     src={courselist.tumbImageAddress? courselist.tumbImageAddress : "public/ang.png"}

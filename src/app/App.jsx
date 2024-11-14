@@ -33,7 +33,7 @@ function App() {
           element: <Courses />,
         },
         {
-          path: "/CourseDetails",
+          path: "/CourseDetails/:id",
           element: <CoursePage />,
         },
         {

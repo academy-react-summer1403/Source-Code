@@ -8,7 +8,7 @@ import SliderComponent from "./SliderComponent";
 export default function CoursePage() {
   return (
     <>
-      <div className="container mx-auto h-[1200px] grid grid-cols-12 gap-6 px-10">
+      <div className="container mx-auto grid grid-cols-12 gap-6 px-10">
         <div className="col-span-9">
           <Header />
           <MainContent />
@@ -19,8 +19,8 @@ export default function CoursePage() {
         </div>
       </div>
 
-      <div className="w-full py-20">
-        <div className="w-full flex justify-center font-semibold text-3xl p-6">
+      <div className="w-full pb-20 pt-48">
+        <div className="w-full flex justify-center font-semibold text-3xl">
           <h3>دوره های مشابه</h3>
         </div>
         <SliderComponent />
