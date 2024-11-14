@@ -111,18 +111,12 @@ export default function Comments() {
               {coursesId.title}
             </Typography>
             <Typography color="textSecondary">
-<<<<<<< HEAD
               {coursesId.miniDescribe}
-=======
               محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته
               و تمیز؛ برای مسائل واقعی دنیای نرم افزار محبوب ترین کتابخانه ی
               جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش
               کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت حل مساله
               به روش کدنویسی پیشرفته و تمیز.
-            </Typography>
-            <Typography variant="h5" component="h3" className="font-semibold">
-              آموزش رایگان html برای چه کسانی مناسب است ؟
->>>>>>> 13975becf4f2261ab21e47c388c633d0a1da4745
             </Typography>
             <Typography variant="h5" component="h3" className="font-semibold flex">
               <div>{coursesId.title}</div>  
@@ -171,7 +165,6 @@ export default function Comments() {
 
         <TabPanel value={selectedTab} index={2}>
           <Box className="flex flex-col gap-4">
-<<<<<<< HEAD
             {/* <Typography variant="h5" component="h3" className="font-semibold">
               نظرات کاربران
             </Typography> */}
@@ -220,69 +213,6 @@ export default function Comments() {
               ))}
             </List> */}
             <CommentsTab/>
-          </Box>
-        </TabPanel>
-
-=======
-            <Typography variant="h5" component="h3" className="font-semibold">
-              نظرات کاربران
-            </Typography>
->>>>>>> 13975becf4f2261ab21e47c388c633d0a1da4745
-
-            {/* Comment Input */}
-            <Box display="flex" flexDirection="column" gap={2}>
-              <TextField
-                label="نظر خود را بنویسید"
-                multiline
-                rows={3}
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                variant="outlined"
-                fullWidth
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleCommentSubmit}
-                style={{ alignSelf: "flex-end" }}
-              >
-                ارسال
-              </Button>
-            </Box>
-            {/* Comments List */}
-            <List>
-              {comments.map((comment, index) => (
-                <Box key={index}>
-                  <ListItem alignItems="flex-start">
-                    <ListItemAvatar>
-                      <Avatar>{comment.name[0]}</Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={
-                        <Typography variant="subtitle1" component="span">
-                          {comment.name}{" "}
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="span"
-                          >
-                            {comment.time}
-                          </Typography>
-                        </Typography>
-                      }
-                      secondary={
-                        <Typography variant="body2" color="textPrimary">
-                          {comment.text}
-                        </Typography>
-                      }
-                    />
-                  </ListItem>
-                  {index < comments.length - 1 && (
-                    <Divider variant="inset" component="li" />
-                  )}
-                </Box>
-              ))}
-            </List>
           </Box>
         </TabPanel>
       </div>

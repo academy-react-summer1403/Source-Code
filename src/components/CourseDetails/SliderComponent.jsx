@@ -1,9 +1,4 @@
-// ResponsiveSliderComponent.jsx
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
-=======
-// import React from "react";
->>>>>>> 13975becf4f2261ab21e47c388c633d0a1da4745
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
@@ -105,13 +100,8 @@ export default function ResponsiveSliderComponent() {
                 src={courselist.tumbImageAddress ? courselist.tumbImageAddress : "../../../public/ang.png"}
                 className="w-full h-[55%] object-cover rounded-3xl"
               />
-<<<<<<< HEAD
               <p className="text-start font-medium">{courselist.title}</p>
               <div className="bg-gray-300 flex flex-row justify-between items-center h-8 w-[90%] rounded-2xl p-2">
-=======
-              <p className="text-start font-medium">{item.title}</p>
-              <div className="bg-gray-200 flex flex-row justify-between items-center h-8 w-[90%] rounded-2xl p-2">
->>>>>>> 13975becf4f2261ab21e47c388c633d0a1da4745
                 <div className="flex flex-row gap-1 font-serif">
                   <img
                     className="w-4 h-4"
