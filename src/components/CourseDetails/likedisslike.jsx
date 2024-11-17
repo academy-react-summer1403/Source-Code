@@ -22,10 +22,32 @@ const LikeDissLike = ({ likeCount, dissLikeCount, currentLikeCount, currentDissL
         GetCourseId();
     }, []);
 
-    const likeclick = () => {
+    const likeclick = async () => {
         setLiked(true);
         setDisliked(false); // در صورت لایک کردن دیسلایک را غیرفعال کنیم
         notifyLike();
+        try {
+            const courseId = coursesId.id;  // استخراج شناسه دوره
+            if (!courseId) {
+                console.error("Course ID not found!");
+                return;
+            }
+
+            const response = await fetch(`/Course/AddCourseLike?CourseId=${courseId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                console.log("Course liked successfully!");
+            } else {
+                console.error("Error liking the course");
+            }
+        } catch (error) {
+            console.error("Error sending like request:", error);
+        }
     }
 
     const disslikeclick = () => {

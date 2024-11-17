@@ -10,6 +10,7 @@ import EditProfile from "../../components/panelComponent/EditProfile/EditProfile
 import CheangePass from "../../components/panelComponent/CheagePass/CheangePass";
 import MyCourses from "../../components/panelComponent/MyCourses/MyCourses";
 import { Link } from "react-router-dom";
+import MyFavoriteCourse from "../../components/panelComponent/MyFaverotCourse/MyFaverotCourse";
 
 function Panel() {
   const [count, setCount] = useState(1);
@@ -385,6 +386,34 @@ function Panel() {
                     دوره های من{" "}
                   </div>
                 </div>
+                <div
+                  className={
+                    (count === 5 ? "bg-indigo-700" : "") +
+                    " mt-3 mx-auto rounded-md text-white w-[90%] h-10 flex pr-5 pt-2"
+                  }
+                >
+                  <svg
+                    className="mr-2 mt-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="23"
+                    height="23"
+                    fill="currentColor"
+                    class="bi bi-list"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+                    />
+                  </svg>
+                  <div
+                    onClick={() => setCount(5)}
+                    className="mr-2 cursor-pointer"
+                  >
+                    {" "}
+                    دوره های مورد علاقه{" "}
+                  </div>
+                </div>
                 <div className="mt-3 mx-auto rounded-md text-white w-[90%] h-10 flex pr-5 pt-2">
                   <svg
                     className="mr-2 mt-2"
@@ -438,6 +467,7 @@ function Panel() {
             {count === 2 && <EditProfile />}
             {count === 3 && <MyCourses />}
             {count === 4 && <CheangePass />}
+            {count === 5 && <MyFavoriteCourse/>}
           </div>
         </div>
       </div>
