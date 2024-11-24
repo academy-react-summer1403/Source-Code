@@ -13,6 +13,7 @@ import axios from "axios";
 import { LoginUser } from "../../core/services/api/login-user";
 import toast from "react-hot-toast";
 import Register from "../Register/Register";
+import { getProfile } from "../../core/services/api/user";
 
 export default function LoginModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -39,8 +40,17 @@ export default function LoginModal({ isOpen, onClose }) {
     password: Yup.string().required("رمز عبور الزامی است"),
   });
 
-  const handleLogin = async (values) => {
+  
+const handleLogin = async (values) => {
     const { isSuccess, message } = await LoginUser(values);
+    if (isSuccess) {
+      const profile = await getProfile();
+      if (profile) {
+        console.log("User profile:", profile);
+      } else {
+        console.log("Failed to fetch profile");
+      }
+    }
     isSuccess ? toast.success(message) && onClose() : toast.error(message);
   };
 

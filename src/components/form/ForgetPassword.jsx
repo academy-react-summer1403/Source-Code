@@ -38,7 +38,7 @@ export default function ForgetPassword() {
     try {
       const response = await axios.post(
         "https://classapi.sepehracademy.ir/api/Sign/Reset",
-        { payload }
+        { ...payload }
       );
       if (response.status === 200) {
         toast.success("رمز عبور با موفقیت تغییر یافت.");
@@ -51,6 +51,7 @@ export default function ForgetPassword() {
   const handleSubmit = async (fields) => {
     try {
       const payload = {
+        userId : localStorage.getItem('id'),
         newPassword: fields.newPassword,
         resetValue: fields.resetValue,
       };

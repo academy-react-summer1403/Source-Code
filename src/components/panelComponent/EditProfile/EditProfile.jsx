@@ -1,10 +1,67 @@
 import React from "react";
+import { useState , useEffect } from "react";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import MyForm from "../../MyForm/MyForm";
+import axios from "axios";
 
 
 function EditProfile() {
+
+  const [profileData, setProfileData] = useState({});
+
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem("userInfo");
+if (storedUserInfo) {
+    setProfileData(JSON.parse(storedUserInfo));
+} else {
+    setProfileData({
+        fName: '',
+        lName: '',
+        nationalCode: '',
+        email: '',
+        birthDay: '',
+        phoneNumber: '',
+        userAbout: '',
+        homeAdderess: '',
+    });
+}
+  }, []);
+
+  const handleSubmit = async (userInfo) => {
+    const token = localStorage.getItem("token");
+    try {
+      const formattedValues = {
+        fName: userInfo.fName,
+        lName: userInfo.lName,
+        nationalCode: userInfo.nationalCode,
+        email: userInfo.email,
+        birthDay: new Date(userInfo.birthDay).toISOString().split('T')[0],
+        phoneNumber: userInfo.phoneNumber,
+        userAbout: userInfo.userAbout,
+        homeAddress: userInfo.homeAdderess,
+    };
+    const response = await axios.put(
+        "https://classapi.sepehracademy.ir/api/SharePanel/UpdateProfileInfo",
+        formattedValues,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
+
+        if (response.status === 200) {
+            console.log("پروفایل با موفقیت بروزرسانی شد:", response.data);
+        } else {
+            console.error("خطا در بروزرسانی پروفایل", response.status);
+        }
+    } catch (error) {
+        console.error("خطا در درخواست:", error.response ? error.response.data : error.message);
+    }
+};
+  
+
   return (
     <div>
       <div className="h-12 flex border-b border-b-slate-300">
@@ -31,14 +88,14 @@ function EditProfile() {
       <div className="mt-5">
         <div className="w-min mx-auto mt-6">
           <Avatar
-            alt="Bita"
+            alt="user"
             src="/static/images/avatar/1.jpg"
             sx={{ width: 140, height: 140 }}
           />
           <div className="mx-auto text-xs text-gray-600 mt-2 text-center"> ویرایش پروفایل </div>
         </div>
         <div className="mx-5 mt-20">
-          <MyForm />
+        <MyForm profileData={profileData} onSubmit={handleSubmit} />
         </div>
       </div>
     </div>

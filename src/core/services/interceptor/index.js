@@ -24,7 +24,7 @@ const onError = (err) => {
     }
   } else {
     console.error("Error: No response from server.");
-    alert("An error occurred: No response from server.");
+    // alert("An error occurred: No response from server.");
   }
 
   return Promise.reject(err);
