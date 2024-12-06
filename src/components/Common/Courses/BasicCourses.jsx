@@ -26,33 +26,6 @@ const BasicCourses = ({ detail, onLikeChange, onRateChange }) => {
   };
   return (
     <div className="bg-white border border-borderCol  py-1 px-2 shadow-lg rounded-2xl justify-center m-auto w-72 flex flex-col">
-      {/* <div className="flex flex-col">
-        <CoursePicture pic={detail.tumbImageAddress? detail.tumbImageAddress : "public/ang.png"} id={detail.courseId} />
-        <div className="flex justify-between py-2">
-          <CourseTitle title={detail.title} id={detail.courseId} />
-          <CourseFavorite
-            id={detail.courseId}
-            userFavorite={detail.userFavorite}
-          />
-        </div>
-      </div>
-      <div className="flex justify-between">
-        <div className="flex flex-col justify-between gap-2">
-          <CourseTeacher teacherName={detail.teacherName} />
-          <CourseTechnology technologyList={detail.technologyList} />
-          <CoursePriceBtn cost={detail.cost} id={detail.courseId} />
-        </div>
-        <div className="flex flex-col py-5 px-1">
-          <LikeDisslike
-            id={detail.courseId}
-            isLiked={detail.userIsLiked}
-            isDissliked={detail.currentUserDissLike}
-            likeCount={detail.likeCount}
-            dissLikeCount={detail.dissLikeCount}
-            onLikeChange={onLikeChange}
-          />
-        </div>
-      </div> */}
       <a key={detail.courseId} onClick={() => handleCourseClick(detail.courseId)} className="h-max bg-white rounded-lg group" >
         <div className="aspect-h-1 px-4 aspect-w-1 w-full overflow-hidden rounded-3xl mt-2 xl:aspect-h-8 xl:aspect-w-7">
           <img

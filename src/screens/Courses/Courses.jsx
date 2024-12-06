@@ -483,7 +483,7 @@ const Courses = () => {
                     <LoadingSpinner />
                 ) : (
                     <div className="flex flex-col gap-10 bg-rangBg pt-12">
-
+                        <Toaster />
                         <div className="text-co flex flex-row-reverse md:justify-evenly justify-around mt-10 pb-6">
                             <TabsBtn
                                 activeView={activeView}
@@ -494,8 +494,12 @@ const Courses = () => {
                                     handleViewClick("view2");
                                 }}
                             />
+                            <CourseBlogTitle title="دوره ها" />
+                            <DownArrowBtn
+                                value={filterObj.RowsOfPage}
+                                onChange={handleFilterObjChange}
+                            />
                         </div>
-
                         <TabsContent
                             setFilter={handleFilterObjChange}
                             onLikeChange={handleLikeChange}

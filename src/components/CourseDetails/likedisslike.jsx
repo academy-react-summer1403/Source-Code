@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import GetCourseDetails from "../../core/services/api/courseid";
 import { useParams } from "react-router-dom";
+import Like from "../../core/services/api/like";
+import disslike from "../../core/services/api/dissLike";
 
 const notifyLike = () => toast('این دوره را پسندیدم ');
 const notifyDisLike = () => toast('این دوره را نپسندیدم ');
@@ -10,11 +12,21 @@ const LikeDissLike = ({ likeCount, dissLikeCount, currentLikeCount, currentDissL
     const params = useParams();
 
     const [coursesId, setCoursId] = useState([]);
-    const [liked, setLiked] = useState(false);  // برای مدیریت وضعیت لایک
-    const [disliked, setDisliked] = useState(false);  // برای مدیریت وضعیت دیسلایک
+    const [liked, setLiked] = useState(false);  
+    const [disliked, setDisliked] = useState(false);   
 
     const GetCourseId = async () => {
         const res = await GetCourseDetails(params.id);
+        setCoursId(res);
+    }
+
+    const LikeA = async () => {
+        const res = await Like(params.id);
+        setCoursId(res);
+    }
+
+    const DissLikeA = async () => {
+        const res = await disslike(params.id);
         setCoursId(res);
     }
 
@@ -24,36 +36,16 @@ const LikeDissLike = ({ likeCount, dissLikeCount, currentLikeCount, currentDissL
 
     const likeclick = async () => {
         setLiked(true);
-        setDisliked(false); // در صورت لایک کردن دیسلایک را غیرفعال کنیم
+        setDisliked(false); 
         notifyLike();
-        try {
-            const courseId = coursesId.id;  // استخراج شناسه دوره
-            if (!courseId) {
-                console.error("Course ID not found!");
-                return;
-            }
-
-            const response = await fetch(`/Course/AddCourseLike?CourseId=${courseId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (response.ok) {
-                console.log("Course liked successfully!");
-            } else {
-                console.error("Error liking the course");
-            }
-        } catch (error) {
-            console.error("Error sending like request:", error);
-        }
+        LikeA();
     }
 
     const disslikeclick = () => {
-        setLiked(false);  // در صورت دیسلایک کردن لایک را غیرفعال کنیم
+        setLiked(false);  
         setDisliked(true);
         notifyDisLike();
+        DissLikeA();
     }
 
     return (
