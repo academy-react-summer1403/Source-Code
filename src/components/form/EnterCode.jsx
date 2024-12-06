@@ -45,6 +45,7 @@ export default function EnterCodeForm({ isOpen, onClose }) {
       verifyCode: values.verifyCode,
       phoneNumber: phone,
     };
+    console.log(obj)
     const result = await verrify(obj);
     console.log(values);
   };
@@ -76,7 +77,7 @@ export default function EnterCodeForm({ isOpen, onClose }) {
                 className=" appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs"
                 name="verifyCode"
                 type="text"
-                placeholder="شماره موبایل"
+                placeholder="کد تائید"
               />
             </div>
             <div className="btn-login py-3 items-center text-center">
@@ -84,7 +85,7 @@ export default function EnterCodeForm({ isOpen, onClose }) {
                 type="submit"
                 className="mb ud zu aen akl asc asn axa axj axs bbl bkb bqh bqi bqk bqr bg-blue-500 text-cyan-50 text-xs rounded-full p-3 px-10 hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
               >
-                دریافت کد تایید
+               تائید
               </button>
               {isTheRegisterOpen && (
                 <TheRegister

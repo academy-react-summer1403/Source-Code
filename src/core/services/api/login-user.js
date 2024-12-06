@@ -12,8 +12,13 @@ export async function LoginUser(user) {
     const isSuccess = response?.data.success;
     const token = response?.data.token;
 
+
+
     if (isSuccess && token) {
       localStorage.setItem("token", token);
+      const id = response.data.id;
+      localStorage.setItem("id",id);
+
       console.log("Token set successfully");
     } else {
       console.log(message || "Login failed");
