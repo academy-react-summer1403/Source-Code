@@ -37,7 +37,7 @@ const SecondViewCourses = ({ detail, onLikeChange, isLiked, issDisliked }) => {
             <div className="mt-5 mr-5">{detail.title}</div>
             <div className="mt-3 text-xs mx-5">{detail.describe} </div>
             <div className="flex my-4 mx-5">
-              <div className="bg-slate-200  rounded-2xl flex">
+              <div className="bg-slate-200 w-max rounded-2xl flex">
                 <div className="flex py-1">
                   <div className="mr-3 my-auto">
                     <svg
