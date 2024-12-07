@@ -17,6 +17,8 @@ import ForgetPassword from "../components/form/ForgetPassword";
 import MainComponent from "../components/Blog/Blogs";
 import BlogDetail from "../components/Blog/BlogDetail";
 
+
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -47,11 +49,11 @@ function App() {
         },
         {
           path: "/blog",
-          element: <MainComponent/>,
+          element: <MainComponent />,
         },
         {
-          path: "/blogDetail",
-          element: <BlogDetail/>,
+          path: "/blogDetail/:id",
+          element: <BlogDetail />,
         },
       ],
     },

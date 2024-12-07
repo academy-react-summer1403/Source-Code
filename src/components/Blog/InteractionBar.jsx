@@ -57,9 +57,9 @@ const InteractionBar = ({ newsId }) => {
                     <FaTwitter className="cursor-pointer hover:text-blue-500 transition-colors" />
                     <FaFacebook className="cursor-pointer hover:text-blue-500 transition-colors" />
                 </div>
-                {/* <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-600">
                     <span>اشتراک‌ گذاری</span>
-                </div> */}
+                </div>
             </div>
 
             <div className="flex justify-between items-center">
@@ -101,9 +101,8 @@ const InteractionBar = ({ newsId }) => {
                             {[...Array(5)].map((_, index) => (
                                 <FaStar
                                     key={index}
-                                    className={`cursor-pointer transition-colors ${
-                                        index < currentRate ? 'text-yellow-500' : 'text-gray-300'
-                                    }`}
+                                    className={`cursor-pointer transition-colors ${index < currentRate ? 'text-yellow-500' : 'text-gray-300'
+                                        }`}
                                 />
                             ))}
                         </div>
