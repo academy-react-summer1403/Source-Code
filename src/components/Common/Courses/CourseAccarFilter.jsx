@@ -23,14 +23,10 @@ const CourseAccarFilter = ({
   const [FilterSitu, setFilterSitu] = useState("hidden");
   const [openAcc1, setOpenAcc1] = React.useState(true);
   const [openAcc2, setOpenAcc2] = React.useState(true);
-  const [openAcc3, setOpenAcc3] = React.useState(true);
-  const [openAcc4, setOpenAcc4] = React.useState(true);
   const [openAcc5, setOpenAcc5] = React.useState(true);
 
   const handleOpenAcc1 = () => setOpenAcc1((cur) => !cur);
   const handleOpenAcc2 = () => setOpenAcc2((cur) => !cur);
-  const handleOpenAcc3 = () => setOpenAcc3((cur) => !cur);
-  const handleOpenAcc4 = () => setOpenAcc4((cur) => !cur);
   const handleOpenAcc5 = () => setOpenAcc5((cur) => !cur);
 
   useEffect(() => {
@@ -152,7 +148,7 @@ const CourseAccarFilter = ({
             </Card>
           </AccordionBody>
         </Accordion>
-        <Accordion open={openAcc2}>
+        <Accordion>
           <AccordionHeader
             onClick={handleOpenAcc2}
             className="font-iranSans text-base border-0 flex border-b text-asBlack-100 hover:text-none"
@@ -173,7 +169,7 @@ const CourseAccarFilter = ({
                     className="w-[87%] mx-auto"
                     onChangeEnd={handlePriceChange}
                   /> */}
-                  
+
 
                   <div className="flex flex-col gap-2 text-sm text-asBlack-100">
                     <div className="flex flex-row-reverse gap-1">
@@ -188,7 +184,7 @@ const CourseAccarFilter = ({
                       <span>تومان</span>
                     </div>
                   </div>
-                </List> 
+                </List>
               </Card>
             )}
           </AccordionBody>

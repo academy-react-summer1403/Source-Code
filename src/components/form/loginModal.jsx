@@ -14,17 +14,15 @@ import { LoginUser } from "../../core/services/api/login-user";
 import toast from "react-hot-toast";
 import Register from "../Register/Register";
 import { getProfile } from "../../core/services/api/user";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
-  // const navigate = useNavigate();
-  // const goToAbout = () => {
-  //   navigate("/Panel");
-  // };
+  const navigate = useNavigate();
+
   const [isRegisterOpen, setIsRegisterOpen] = useState();
   const openRegister = () => setIsRegisterOpen(true);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -40,8 +38,8 @@ export default function LoginModal({ isOpen, onClose }) {
     password: Yup.string().required("رمز عبور الزامی است"),
   });
 
-  
-const handleLogin = async (values) => {
+
+  const handleLogin = async (values) => {
     const { isSuccess, message } = await LoginUser(values);
     if (isSuccess) {
       const profile = await getProfile();
@@ -128,10 +126,7 @@ const handleLogin = async (values) => {
                       من را به خاطر بسپار
                     </label>
                     <a
-                      onClick={() => {
-                        openModal();
-                      }}
-                      href="#"
+                      href="/forgetpass"
                       className="changePassword font-serif text-xs underline"
                     >
                       رمز عبور را فراموش کردم
@@ -150,7 +145,7 @@ const handleLogin = async (values) => {
                   )}
                   <div className="btn-login py-3 items-center text-center">
                     <button
-                      // onClick={goToAbout}
+
                       type="submit"
                       // disabled={isSubmitting}
                       className="mb ud zu aen akl asc asn axa axj axs bbl bkb bqh bqi bqk bqr bg-blue-500 text-cyan-50 text-xs rounded-full p-3 px-10 hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-center inline-flex me-2 dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
@@ -162,9 +157,7 @@ const handleLogin = async (values) => {
                     <p className="awi axa axs ayu text-xs">
                       حساب کاربری ندارید؟{" "}
                       <a
-                        onClick={() => {
-                          openRegister();
-                        }}
+                        href="/register"
                         className="axj azl bmo text-xs underline"
                       >
                         ثبت نام

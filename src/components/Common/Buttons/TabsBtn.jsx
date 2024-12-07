@@ -7,7 +7,7 @@ const TabsBtn = (props) => {
 
   return (
     <>
-      <div className="flex p-2 mt-3 gap-1 rounded-xl bg-slate-200 border border-red-500">
+      <div className="flex p-2 mt-3 gap-1 rounded-xl bg-slate-200">
         <button
           onClick={handleViewClick1}
           className={`py-2 px-2 rounded-xl  ${activeView === "view1" ? "bg-white" : " bg-deActiveTab "

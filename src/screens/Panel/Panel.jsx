@@ -11,10 +11,12 @@ import CheangePass from "../../components/panelComponent/CheagePass/CheangePass"
 import MyCourses from "../../components/panelComponent/MyCourses/MyCourses";
 import { Link } from "react-router-dom";
 import MyFavoriteCourse from "../../components/panelComponent/MyFaverotCourse/MyFaverotCourse";
+import DarkModeSwich from "../../components/DarkModeSwich/DarkmodeSwich";
 
 function Panel() {
   const [count, setCount] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="bg-indigo-50 xl:w-screen w-fit h-fit">
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -62,49 +64,26 @@ function Panel() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      {/* <XMarkIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      /> */}
                     </button>
                   </div>
                 </Transition.Child>
                 <div className="bg- h-0 px-2 flex-1 overflow-y-auto pt-5 pb-4 text-asBlack-300 bg-indigo-50">
                   <div className="flex flex-shrink-0 items-center px-4"></div>
                   <div className="py-12 z-40 mx-auto xl:h-screen xl:w-80 rounded-lg shadow-xl my-10 relative bg-gradient-to-b from-indigo-500 to-indigo-800">
-                  <Link to="/" >
-                    <svg
-                      className="text-white mt-3 mr-3"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="23"
-                      height="23"
-                      fill="currentColor"
-                      // class="bi bi-house-door-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
-                    </svg>
-                    {" "}
-                  </Link>
-                    <div className="mt-2 pb-2 w-[90%] h-24">
-                      <div className="w-[40%] mx-auto">
-                        <div className="w-min h-min">
-                          <div className="w-min h-min my-auto xl:mt-2 mx-[35%]">
-                            <Avatar
-                              sx={{ width: 80, height: 80 }}
-                              alt="Zahradar"
-                              src="src/assets/image/avataricon.png"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-1/2 mx-auto">
-                        <div className="text-white font-thin text-xl text-center mt-3">
-                          {" "}
-                          بیتا قنبری{" "}
-                        </div>
-                      </div>
-                    </div>
+                    <Link to="/" >
+                      <svg
+                        className="text-white mt-3 mr-3"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="23"
+                        height="23"
+                        fill="currentColor"
+                        // class="bi bi-house-door-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                      </svg>
+                      {" "}
+                    </Link>
                     <div
                       className={
                         (count === 1 ? "bg-indigo-700" : "") +
@@ -244,11 +223,11 @@ function Panel() {
           <div>
             <div className="flex-col lg:col-span-4 overflow-y-auto ">
               <div className=" border border-lastCoursesBorder lg:h-[500px] xl:h-[700px] bg-gradient-to-b from-indigo-500 to-indigo-800 rounded-lg shadow-xl my-10">
-                <div className="cursor-pointer w-min" >
+                <div className="cursor-pointer w-min flex mt-3" >
                   {" "}
                   <Link to="/" >
                     <svg
-                      className="text-white mt-3 mr-3"
+                      className="text-white mt-1 mr-3 ml-36"
                       xmlns="http://www.w3.org/2000/svg"
                       width="23"
                       height="23"
@@ -260,25 +239,9 @@ function Panel() {
                     </svg>
                     {" "}
                   </Link>
+                  <DarkModeSwich />
                 </div>
                 <div className="mt-2 pb-2 w-[90%] mx-auto border-b border-zinc-400">
-                  <div className="w-[40%] mx-auto">
-                    <div className="h-min w-min">
-                      <div className="h-min w-min my-auto xl:mt-2">
-                        <Avatar
-                          sx={{ width: 80, height: 80 }}
-                          alt="Zahradar"
-                          src="src/assets/image/avataricon.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-1/2 mx-auto">
-                    <div className="text-white font-thin text-xl text-center mt-3 -mr-3">
-                      {" "}
-                      بیتا قنبری{" "}
-                    </div>
-                  </div>
                 </div>
                 <div
                   className={
@@ -467,11 +430,11 @@ function Panel() {
             {count === 2 && <EditProfile />}
             {count === 3 && <MyCourses />}
             {count === 4 && <CheangePass />}
-            {count === 5 && <MyFavoriteCourse/>}
+            {count === 5 && <MyFavoriteCourse />}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

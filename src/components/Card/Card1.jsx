@@ -8,28 +8,28 @@ function Card1() {
 
     const naviget = useNavigate()
 
-    const [selectCourseid , setselectCourseid] = useState(null)
+    const [selectCourseid, setselectCourseid] = useState(null)
 
-    const handleCourseClick=(courseId)=> {
+    const handleCourseClick = (courseId) => {
         setselectCourseid(courseId);
-        naviget (`/CourseDetails/${courseId}`);
+        naviget(`/CourseDetails/${courseId}`);
 
         console.log(courseId)
-    } 
+    }
 
-    const [courselist , setcourses] = useState([])
+    const [courselist, setcourses] = useState([])
 
-    const GetCourseList=async()=> {
-        const res=  await getCourseListWithPagination()
-        
+    const GetCourseList = async () => {
+        const res = await getCourseListWithPagination()
+
         setcourses(res.courseFilterDtos)
-    } 
+    }
 
-    useEffect (() => {
+    useEffect(() => {
         GetCourseList()
     }
-    ,[]
-)
+        , []
+    )
     return (
         <div>
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -44,13 +44,13 @@ function Card1() {
                         >
                             <div className="shadow-lg bg-white rounded-2xl -mt-5 mb-12 flex ">
                                 <div className="w-1/2">
-                                    <img className="py-3 pr-4" src={courselist.tumbImageAddress? courselist.tumbImageAddress : "public/ang.png"} />
+                                    <img className="py-3 pr-4" src={courselist.tumbImageAddress ? courselist.tumbImageAddress : "public/ang.png"} />
                                 </div>
                                 <div className="">
                                     <div className="mt-5 mr-5">{courselist.title}</div>
                                     <div className="mt-3 text-xs mx-5">{courselist.describe} </div>
-                                    <div className="flex my-4 mx-5 border border-red-600">
-                                        <div className="bg-slate-200 border border-red-600 rounded-2xl flex">
+                                    <div className="flex my-4 mx-5 ">
+                                        <div className="bg-slate-200 rounded-2xl flex">
                                             <div className="flex py-1">
                                                 <div className="mr-3 my-auto">
                                                     <svg
@@ -263,7 +263,7 @@ function Card1() {
                                                 <div className="mr-1 ml-3 text-xs">{dateModified(courselist.lastUpdate)}</div>
                                             </div>
                                         </div>
-                                        <div className="flex mr-36  border border-red-600">
+                                        <div className="flex mr-36 ">
                                             <div className="text-blue-500 my-auto mr-3 text-sm">
                                                 {" "}
                                                 {courselist.cost}{" "}

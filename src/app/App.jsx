@@ -9,12 +9,18 @@ import Panel from "../screens/Panel/Panel";
 import CoursePage from "../components/CourseDetails/CoursePage";
 import { Toaster } from "react-hot-toast";
 import Blog from "../screens/Blog/Blog";
-import Register from "../components/Register/Register";
+// import Register from "../components/Register/Register";
 import { LoginUser } from "../core/services/api/login-user";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setItem } from "../core/services/common/storage.services";
 import { getProfile } from "../core/services/api/user";
-import ForgetPassword from "../components/form/ForgetPassword";
+// import ForgetPassword from "../components/form/ForgetPassword";
+// import LoginModal from "../components/form/loginModal";
+// import ForgetPass1 from "../components/form/ForgetPass1";
+import DaekModeSwich from "../components/DarkModeSwich/DarkmodeSwich";
+import LayOutH from "../components/layout/LayOutH";
+import { SignUp } from "../screens/SignUp";
+import { ForgetPass } from "../screens/ForgetPass";
 // import TheRegister from "../components/Register/TheRegister";
 
 function App() {
@@ -29,10 +35,7 @@ function App() {
         },
       ],
     },
-    {
-      path: "/resetpassword/:configValue",
-      element: <ForgetPassword />,
-    },
+
     {
       path: "/",
       element: <LayOut />,
@@ -53,15 +56,25 @@ function App() {
     },
     {
       path: "/",
+      element: <LayOutH />,
+      children: [
+        {
+          path: "/register",
+          element: <SignUp />,
+        },
+        {
+          path: "/forgetpass",
+          element: <ForgetPass />,
+        },
+      ],
+    },
+    {
+      path: "/",
       element: <LayOutP />,
       children: [
         {
           path: "/Panel",
           element: <Panel />,
-        },
-        {
-          path: "/register",
-          element: <Register />,
         },
       ],
     },
@@ -92,12 +105,35 @@ function App() {
     }
   }, []);
 
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = (event) => {
+    setDarkMode(event.target.checked);
+  };
+
   return (
     <>
       <Toaster />
+      {/* <div className={darkMode ? 'dark' : ''}>
+        <div
+          style={{
+            backgroundColor: darkMode ? '#121212' : '#f5f5f5',
+            color: darkMode ? '#ffffff' : '#000000',
+            height: '100vh',
+            transition: 'background-color 0.3s, color 0.3s',
+          }}
+        >
+          <div style={{ padding: '20px' }}>
+            <h1>{darkMode ? 'Dark Mode' : 'Light Mode'}</h1>
+            <DaekModeSwich checked={darkMode} onChange={toggleDarkMode} />
+          </div>
+        </div>
+      </div> */}
       <RouterProvider router={router} />
+
     </>
   );
+
+
 }
 
 export default App;

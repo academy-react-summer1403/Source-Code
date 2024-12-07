@@ -15,13 +15,13 @@ import { useNavigate } from "react-router-dom"
 
 const SecondViewCourses = ({ detail, onLikeChange, isLiked, issDisliked }) => {
   const naviget = useNavigate()
-  const [selectCourseid , setselectCourseid] = useState(null)
-  const handleCourseClick=(courseId)=> {
+  const [selectCourseid, setselectCourseid] = useState(null)
+  const handleCourseClick = (courseId) => {
     setselectCourseid(courseId);
-    naviget (`/CourseDetails/${courseId}`);
+    naviget(`/CourseDetails/${courseId}`);
 
     console.log(courseId)
-} 
+  }
   return (
     <div className="mx-auto rounded-2xl flex mt-7">
       {/* <div className="flex flex-none w-[200px] ">
@@ -81,8 +81,8 @@ const SecondViewCourses = ({ detail, onLikeChange, isLiked, issDisliked }) => {
           <div className="">
             <div className="mt-5 mr-5">{detail.title}</div>
             <div className="mt-3 text-xs mx-5">{detail.describe} </div>
-            <div className="flex my-4 mx-5 border border-red-600">
-              <div className="bg-slate-200 border border-red-600 rounded-2xl flex">
+            <div className="flex my-4 mx-5">
+              <div className="bg-slate-200  rounded-2xl flex">
                 <div className="flex py-1">
                   <div className="mr-3 my-auto">
                     <svg
@@ -295,7 +295,7 @@ const SecondViewCourses = ({ detail, onLikeChange, isLiked, issDisliked }) => {
                   <div className="mr-1 ml-3 text-xs">{dateModified(detail.lastUpdate)}</div>
                 </div>
               </div>
-              <div className="flex mr-36  border border-red-600">
+              <div className="flex mr-36 ">
                 <div className="text-blue-500 my-auto mr-3 text-sm">
                   {" "}
                   {detail.cost}{" "}
