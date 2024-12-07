@@ -1,64 +1,35 @@
 import React, { useEffect, useState } from "react"
 import { getCourseListWithPagination } from "../../core/services/api/courselist"
 import { dateModified } from "./datemod"
+import { useNavigate } from "react-router-dom"
 
-const products = [
-    // {
-    //     id: 1,
-    //     title: "دوره جامع HTML 5 صفر تا صد",
-    //     // href: '#',
-    //     lesen: "204درس",
-    //     time: "14ساعت",
-    //     date: "1آذر1403",
-    //     teacherName: "دکتر بحرالعلوم",
-    //     snumber: "254",
-    //     cost: "500000",
-    //     imageSrc: "public/Rectangle 124.png",
-    //     describe: "محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛ برای مسائل واقعی دنیای نرم افزار  محبوب ترین کتابخانه ی جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز.",
-    // },
-    // {
-    //     id: 2,
-    //     title: "دوره جامع HTML 5 صفر تا صد",
-    //     // href: '#',
-    //     lesen: "204درس",
-    //     time: "14ساعت",
-    //     date: "1آذر1403",
-    //     teacherName: "دکتر بحرالعلوم",
-    //     snumber: "254",
-    //     cost: "500000",
-    //     imageSrc: "public/Rectangle 124.png",
-    //     describe: "محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛ برای مسائل واقعی دنیای نرم افزار  محبوب ترین کتابخانه ی جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز.",
-    // },
-    // {
-    //     id: 3,
-    //     title: "دوره جامع HTML 5 صفر تا صد",
-    //     // href: '#',
-    //     lesen: "204درس",
-    //     time: "14ساعت",
-    //     date: "1آذر1403",
-    //     teacherName: "دکتر بحرالعلوم",
-    //     snumber: "254",
-    //     cost: "500000",
-    //     imageSrc: "public/Rectangle 124.png",
-    //     describe: "محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛ برای مسائل واقعی دنیای نرم افزار  محبوب ترین کتابخانه ی جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز.",
-    // },
-];
 
 function Card1() {
 
-    const [courselist , setcourses] = useState([])
+    const naviget = useNavigate()
 
-    const GetCourseList=async()=> {
-        const res=  await getCourseListWithPagination()
-        
+    const [selectCourseid, setselectCourseid] = useState(null)
+
+    const handleCourseClick = (courseId) => {
+        setselectCourseid(courseId);
+        naviget(`/CourseDetails/${courseId}`);
+
+        console.log(courseId)
+    }
+
+    const [courselist, setcourses] = useState([])
+
+    const GetCourseList = async () => {
+        const res = await getCourseListWithPagination()
+
         setcourses(res.courseFilterDtos)
-    } 
+    }
 
-    useEffect (() => {
+    useEffect(() => {
         GetCourseList()
     }
-    ,[]
-)
+        , []
+    )
     return (
         <div>
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -68,17 +39,17 @@ function Card1() {
                     {courselist.map((courselist) => (
                         <a
                             key={courselist.courseId}
-                            href={courselist.href}
+                            onClick={() => handleCourseClick(courselist.courseId)}
                             className=" rounded-lg group"
                         >
-                            <div className="shadow-lg bg-white rounded-2xl -mt-5 mb-12 flex">
+                            <div className="shadow-lg bg-white rounded-2xl -mt-5 mb-12 flex ">
                                 <div className="w-1/2">
-                                    <img className="py-3 pr-4" src={courselist.tumbImageAddress? courselist.tumbImageAddress : "public/ang.png"} />
+                                    <img className="py-3 pr-4" src={courselist.tumbImageAddress ? courselist.tumbImageAddress : "public/ang.png"} />
                                 </div>
                                 <div className="">
                                     <div className="mt-5 mr-5">{courselist.title}</div>
                                     <div className="mt-3 text-xs mx-5">{courselist.describe} </div>
-                                    <div className="flex my-4 mx-5">
+                                    <div className="flex my-4 mx-5 ">
                                         <div className="bg-slate-200 rounded-2xl flex">
                                             <div className="flex py-1">
                                                 <div className="mr-3 my-auto">
@@ -196,7 +167,7 @@ function Card1() {
                                                         />
                                                     </svg>
                                                 </div>
-                                                <div className="mr-1 text-xs">{courselist.lesen}</div>
+                                                <div className="mr-1 text-xs">۲۰۲ درس</div>
                                             </div>
                                             <div className="flex py-1">
                                                 <div className="mr-2 my-auto">
@@ -223,7 +194,7 @@ function Card1() {
                                                         />
                                                     </svg>
                                                 </div>
-                                                <div className="mr-1 text-xs">{courselist.time}</div>
+                                                <div className="mr-1 text-xs">۱۴ ساعت</div>
                                             </div>
                                             <div className="flex py-1">
                                                 <div className="mr-2 my-auto">
@@ -289,10 +260,10 @@ function Card1() {
                                                         />
                                                     </svg>
                                                 </div>
-                                                <div className="mr-1 ml-3 text-xs">{courselist.date}</div>
+                                                <div className="mr-1 ml-3 text-xs">{dateModified(courselist.lastUpdate)}</div>
                                             </div>
                                         </div>
-                                        <div className="flex mr-36">
+                                        <div className="flex mr-36 ">
                                             <div className="text-blue-500 my-auto mr-3 text-sm">
                                                 {" "}
                                                 {courselist.cost}{" "}

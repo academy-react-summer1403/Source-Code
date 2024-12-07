@@ -2,12 +2,11 @@ import React from "react";
 import { useState } from "react";
 import LoginModal from "../../components/form/loginModal";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: 'دوره ها', href: '/courses', current: true },
   { name: 'اساتید', href: '#', current: false },
-  // { name: 'ارتباط با ما', href: '#', current: false },
   { name: 'اخبار و مقالات', href: '/Blog', current: false },
 ]
 
@@ -20,6 +19,12 @@ const Landing = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const navigate = useNavigate();
+
+  const panel = async () => {
+    navigate("/panel");
+  };
+
   return (
     <div className="bg-slate-50 w-fit">
       <div className="w-full">
@@ -165,6 +170,7 @@ const Landing = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        onClick={panel}
                       >
                         <path
                           opacity="0.4"
@@ -1145,10 +1151,10 @@ const Landing = () => {
           </div>
         </div>
         <Link to="/courses">
-        <div className="text-white px-2 py-1 bg-sky-500 w-max mx-auto mt-5 rounded-3xl text-sm">
-          {" "}
-          مشاهده همه{" "}
-        </div>
+          <div className="text-white px-2 py-1 bg-sky-500 w-max mx-auto mt-5 rounded-3xl text-sm">
+            {" "}
+            مشاهده همه{" "}
+          </div>
         </Link>
       </div>
       <div className="h-[500px] flex mt-12">
@@ -1392,7 +1398,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      <div className="bg-sky-100 mt-12 ">
+      <div className="bg-sky-100 mt-12">
         <div className="mx-auto text-2xl font-bold border-b-2 border-sky-200 w-max">
           {" "}
           اساتید برتر{" "}

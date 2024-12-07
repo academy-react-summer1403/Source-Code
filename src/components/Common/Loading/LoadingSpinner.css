@@ -1,0 +1,10 @@
+.spinner {
+    border-top-color: transparent;
+    animation: bounce 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

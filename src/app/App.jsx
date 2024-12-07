@@ -8,14 +8,21 @@ import LayOutP from "../components/layout/LayOutP";
 import Panel from "../screens/Panel/Panel";
 import CoursePage from "../components/CourseDetails/CoursePage";
 import { Toaster } from "react-hot-toast";
-import Blog from "../screens/Blog/Blog";
+// import Blog from "../screens/Blog/Blog";
 import Register from "../components/Register/Register";
 import { LoginUser } from "../core/services/api/login-user";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setItem } from "../core/services/common/storage.services";
 import { getProfile } from "../core/services/api/user";
-import ForgetPassword from "../components/form/ForgetPassword";
+import LayOutH from "../components/layout/LayOutH";
+import { SignUp } from "../screens/SignUp";
+import { ForgetPass } from "../screens/ForgetPass";
 // import TheRegister from "../components/Register/TheRegister";
+import ForgetPassword from "../components/form/ForgetPassword";
+import MainComponent from "../components/Blog/Blogs";
+import BlogDetail from "../components/Blog/BlogDetail";
+
+
 
 function App() {
   const router = createBrowserRouter([
@@ -29,10 +36,7 @@ function App() {
         },
       ],
     },
-    {
-      path: "/resetpassword/:configValue",
-      element: <ForgetPassword />,
-    },
+
     {
       path: "/",
       element: <LayOut />,
@@ -42,12 +46,30 @@ function App() {
           element: <Courses />,
         },
         {
-          path: "/CourseDetails",
+          path: "/CourseDetails/:id",
           element: <CoursePage />,
         },
         {
           path: "/blog",
-          element: <Blog />,
+          element: <MainComponent />,
+        },
+        {
+          path: "/blogDetail/:id",
+          element: <BlogDetail />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <LayOutH />,
+      children: [
+        {
+          path: "/register",
+          element: <SignUp />,
+        },
+        {
+          path: "/forgetpass",
+          element: <ForgetPass />,
         },
       ],
     },
@@ -58,10 +80,6 @@ function App() {
         {
           path: "/Panel",
           element: <Panel />,
-        },
-        {
-          path: "/register",
-          element: <Register />,
         },
       ],
     },
@@ -92,12 +110,21 @@ function App() {
     }
   }, []);
 
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = (event) => {
+    setDarkMode(event.target.checked);
+  };
+
   return (
     <>
       <Toaster />
+
       <RouterProvider router={router} />
+
     </>
   );
+
+
 }
 
 export default App;

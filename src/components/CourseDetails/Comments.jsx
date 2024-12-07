@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import GetCourseDetails from '../../core/services/api/courseid';
+import { useParams } from 'react-router-dom';
 import {
   Tabs,
   Tab,
@@ -17,6 +19,7 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CommentsTab from './commentstab';
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 
 export default function Comments() {
@@ -67,9 +70,27 @@ export default function Comments() {
     { title: "جلسه هفتم: آشنایی با CSS", duration: "3 hrs 52 mins" },
   ];
 
+  const params = useParams();
+
+  const [coursesId, setCoursId] = useState([])
+
+  const GetCourseId = async () => {
+    const res = await GetCourseDetails(params.id)
+
+    setCoursId(res)
+  }
+
+  console.log(params.id)
+
+  useEffect(() => {
+    GetCourseId()
+  }
+    , []
+  )
+
   return (
     <>
-      <div className="container bg-white w-4/5 m-auto p-9 flex flex-col gap-8 rounded-3xl shadow-md">
+      <div className="container dark:bg-slate-500 dark:text-white bg-white w-4/5 mx-auto px-9 py-9 flex flex-col gap-8 rounded-3xl shadow-md">
         {/* Tabs */}
         <Tabs
           value={selectedTab}
@@ -87,31 +108,22 @@ export default function Comments() {
         <TabPanel value={selectedTab} index={0}>
           <Box className="flex flex-col gap-4">
             <Typography variant="h5" component="h3" className="font-semibold">
-              آموزش رایگان HTML
+              {coursesId.title}
             </Typography>
             <Typography color="textSecondary">
+              {coursesId.miniDescribe}
               محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته
               و تمیز؛ برای مسائل واقعی دنیای نرم افزار محبوب ترین کتابخانه ی
               جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش
               کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت حل مساله
               به روش کدنویسی پیشرفته و تمیز.
             </Typography>
-            <Typography variant="h5" component="h3" className="font-semibold">
-              آموزش رایگان html برای چه کسانی مناسب است ؟
+            <Typography variant="h5" component="h3" className="font-semibold flex">
+              <div>{coursesId.title}</div>
+              <div>برای چه کسانی مناسب است؟</div>
             </Typography>
             <Typography color="textSecondary">
-              محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته
-              و تمیز؛ برای مسائل واقعی دنیای نرم افزار محبوب ترین کتابخانه ی
-              جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش
-              کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت حل مساله
-              به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت
-              حل مساله به روش کدنویسی پیشرفته و تمیز؛
-            </Typography>
-            <Typography color="textSecondary">
-              برای مسائل واقعی دنیای نرم افزار محبوب ترین کتابخانه ی جاوااسکریپت
-              محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی پیشرفته
-              و تمیز؛ محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی
-              پیشرفته و تمیز;
+              {coursesId.describe}
             </Typography>
           </Box>
         </TabPanel>
@@ -153,12 +165,11 @@ export default function Comments() {
 
         <TabPanel value={selectedTab} index={2}>
           <Box className="flex flex-col gap-4">
-            <Typography variant="h5" component="h3" className="font-semibold">
+            {/* <Typography variant="h5" component="h3" className="font-semibold">
               نظرات کاربران
-            </Typography>
+            </Typography> */}
 
-            {/* Comment Input */}
-            <Box display="flex" flexDirection="column" gap={2}>
+            {/* <Box display="flex" flexDirection="column" gap={2}>
               <TextField
                 label="نظر خود را بنویسید"
                 multiline
@@ -177,7 +188,6 @@ export default function Comments() {
                 ارسال
               </Button>
             </Box>
-            {/* Comments List */}
             <List>
               {comments.map((comment, index) => (
                 <Box key={index}>
@@ -188,14 +198,7 @@ export default function Comments() {
                     <ListItemText
                       primary={
                         <Typography variant="subtitle1" component="span">
-                          {comment.name}{" "}
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="span"
-                          >
-                            {comment.time}
-                          </Typography>
+                          {comment.name} <Typography variant="body2" color="textSecondary" component="span">{comment.time}</Typography>
                         </Typography>
                       }
                       secondary={
@@ -205,12 +208,11 @@ export default function Comments() {
                       }
                     />
                   </ListItem>
-                  {index < comments.length - 1 && (
-                    <Divider variant="inset" component="li" />
-                  )}
+                  {index < comments.length - 1 && <Divider variant="inset" component="li" />}
                 </Box>
               ))}
-            </List>
+            </List> */}
+            <CommentsTab />
           </Box>
         </TabPanel>
       </div>

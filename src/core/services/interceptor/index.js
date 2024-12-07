@@ -15,7 +15,7 @@ const onError = (err) => {
 
   if (err.response) {
     if (err.response.status >= 400 && err.response.status < 500) {
-      alert("Client error: " + err.response.status);
+      // alert("Client error: " + err.response.status);
     }
 
     if (err.response.status === 401) {
