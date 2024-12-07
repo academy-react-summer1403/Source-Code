@@ -14,27 +14,27 @@ import { dateModified } from "../../Card/datemod";
 
 const BasicCourses = ({ detail, onLikeChange, onRateChange }) => {
   const naviget = useNavigate()
-  const [selectCourseid , setselectCourseid] = useState(null)
-  const handleCourseClick=(courseId)=> {
+  const [selectCourseid, setselectCourseid] = useState(null)
+  const handleCourseClick = (courseId) => {
     setselectCourseid(courseId);
-    naviget (`/CourseDetails/${courseId}`);
+    naviget(`/CourseDetails/${courseId}`);
 
     console.log(courseId)
-} 
+  }
   const handleLike = () => {
     console.log(1);
   };
   return (
-    <div className="bg-white border border-borderCol  py-1 px-2 shadow-lg rounded-2xl justify-center m-auto w-72 flex flex-col">
-      <a key={detail.courseId} onClick={() => handleCourseClick(detail.courseId)} className="h-max bg-white rounded-lg group" >
+    <div className="bg-white dark:bg-slate-500 border border-borderCol py-1 px-2 shadow-lg rounded-2xl justify-center m-auto w-72 flex flex-col">
+      <a key={detail.courseId} onClick={() => handleCourseClick(detail.courseId)} className="h-max bg-white dark:bg-slate-500 rounded-lg group" >
         <div className="aspect-h-1 px-4 aspect-w-1 w-full overflow-hidden rounded-3xl mt-2 xl:aspect-h-8 xl:aspect-w-7">
           <img
             src={detail.tumbImageAddress ? detail.tumbImageAddress : "public/ang.png"}
             className="mx-auto object-cover object-center group-hover:opacity-75"
           />
         </div>
-        <h3 className="mt-3 mx-auto w-max text-sm text-gray-700">{detail.title}</h3>
-        <div className='w-5/6 h-6 bg-slate-200 rounded-xl mx-auto mt-2 flex'>
+        <h3 className="mt-3 mx-auto w-max text-sm text-gray-700 dark:text-white">{detail.title}</h3>
+        <div className='w-5/6 h-6 bg-slate-200 dark:text-black rounded-xl mx-auto mt-2 flex'>
           <div className='h-full mr-2 flex'>
             <div className='my-1'>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

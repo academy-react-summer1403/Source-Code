@@ -90,7 +90,7 @@ export default function Comments() {
 
   return (
     <>
-      <div className="container bg-white w-4/5 mx-auto px-9 py-9 flex flex-col gap-8 rounded-3xl shadow-md">
+      <div className="container dark:bg-slate-500 dark:text-white bg-white w-4/5 mx-auto px-9 py-9 flex flex-col gap-8 rounded-3xl shadow-md">
         {/* Tabs */}
         <Tabs
           value={selectedTab}
@@ -119,8 +119,8 @@ export default function Comments() {
               به روش کدنویسی پیشرفته و تمیز.
             </Typography>
             <Typography variant="h5" component="h3" className="font-semibold flex">
-              <div>{coursesId.title}</div>  
-              <div>برای چه کسانی مناسب است؟</div>    
+              <div>{coursesId.title}</div>
+              <div>برای چه کسانی مناسب است؟</div>
             </Typography>
             <Typography color="textSecondary">
               {coursesId.describe}
@@ -212,7 +212,7 @@ export default function Comments() {
                 </Box>
               ))}
             </List> */}
-            <CommentsTab/>
+            <CommentsTab />
           </Box>
         </TabPanel>
       </div>

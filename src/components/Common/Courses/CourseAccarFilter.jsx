@@ -67,7 +67,7 @@ const CourseAccarFilter = ({
     <div
       className={`${FilterSitu} z-10 w-60 lg:flex flex-col gap-2 text-base font-semibold `}
     >
-      <div className="flex justify-between mb-2 border border-borderGray shadow-xl bg-cardBg h-12 px-5 items-center rounded-2xl text-sm">
+      <div className="flex justify-between mb-2 border border-borderGray shadow-xl bg-cardBg h-12 px-5 items-center rounded-2xl text-sm dark:text-white">
         <div className="flex  gap-2 text-asBlack-100">
           <div
             onClick={() => setOpenSitu(!openSitu)}
@@ -128,7 +128,7 @@ const CourseAccarFilter = ({
                     return (
                       <ListItem
                         key={index}
-                        className="p-0"
+                        className="p-0 dark:text-white"
                       >
                         <ListItemPrefix className="mr-0">
                           <Checkbox
@@ -203,7 +203,7 @@ const CourseAccarFilter = ({
               <List className="p-0 shadow-none">
                 {filterObj &&
                   filterObj?.teacher?.map((item, index) => (
-                    <ListItem className="p-0 hover:bg-checkboxHover">
+                    <ListItem className="p-0 hover:bg-blue-400 dark:text-white">
                       <label
                         htmlFor="vertical-list-react"
                         className="flex w-full cursor-pointer items-center gap-3 pb-1"

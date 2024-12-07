@@ -37,9 +37,13 @@ const Header = () => {
     navigate("/panel");
   };
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  }
 
   return (
-
     <Disclosure as="nav" className="">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
@@ -145,6 +149,7 @@ const Header = () => {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <div className="flex">
+
               <div className="rounded-full bg-white px-1 py-1 w-7 h-7 my-auto mr-2 cursor-pointer">
                 <svg
                   width="20"

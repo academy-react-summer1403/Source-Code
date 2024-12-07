@@ -17,7 +17,7 @@ import { getProfile } from "../core/services/api/user";
 // import ForgetPassword from "../components/form/ForgetPassword";
 // import LoginModal from "../components/form/loginModal";
 // import ForgetPass1 from "../components/form/ForgetPass1";
-import DaekModeSwich from "../components/DarkModeSwich/DarkmodeSwich";
+// import DaekModeSwich from "../components/DarkModeSwich/DarkmodeSwich";
 import LayOutH from "../components/layout/LayOutH";
 import { SignUp } from "../screens/SignUp";
 import { ForgetPass } from "../screens/ForgetPass";
@@ -113,21 +113,7 @@ function App() {
   return (
     <>
       <Toaster />
-      {/* <div className={darkMode ? 'dark' : ''}>
-        <div
-          style={{
-            backgroundColor: darkMode ? '#121212' : '#f5f5f5',
-            color: darkMode ? '#ffffff' : '#000000',
-            height: '100vh',
-            transition: 'background-color 0.3s, color 0.3s',
-          }}
-        >
-          <div style={{ padding: '20px' }}>
-            <h1>{darkMode ? 'Dark Mode' : 'Light Mode'}</h1>
-            <DaekModeSwich checked={darkMode} onChange={toggleDarkMode} />
-          </div>
-        </div>
-      </div> */}
+
       <RouterProvider router={router} />
 
     </>

@@ -446,81 +446,95 @@ const Courses = () => {
         }
     };
 
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    }
+
     return (
         <>
-            <div className="w-11/12 h-80 mx-auto my-7 flex">
-                <div className="w-1/2 h-max my-auto">
-                    <img
-                        className="absolute z-10 h-[11%] right-16 -mt-6"
-                        src="public/Rectangle 251.png"
-                    />
-                    <img
-                        className="absolute z-10 h-[22%] -mt-12 right-[45%]"
-                        src="public/Dots (1).png"
-                    />
-                    <img
-                        className="absolute z-10 h-[18%] mt-16 right-[7%]"
-                        src="public/Dots.png"
-                    />
-                    <div className="z-50 relative font-normal mr-10 w-max h-max text-lg text-blue-500">
-                        مهمه از کی یاد می گیری!!
-                    </div>
-                    <div className="z-50 relative font-bold mt-3 mr-10 w-max h-max text-lg">
-                        اموزش برنامه نویسی با بهترین ها
-                    </div>
-                    <div className="z-50 relative mt-3 mr-10 text-stone-700 h-max text-sm">
-                        آموزش برنامه نویسی یکی از دوره‌های محبوب در حوزه فناوری اطلاعات است.
-                        برنامه نویسی مهارتی است که به افراد امکان می‌دهد تا نرم‌افزارهای
-                        کامپیوتری را ایجاد و توسعه دهند.{" "}
-                    </div>
-                </div>
-                <div className="w-1/2 h/full">
-                    <img className="w-[85%] mx-auto h-full" src="public/Asset 1 1.png" />
-                </div>
-            </div>
-            <div className="Loading">
-                {loading ? (
-                    <LoadingSpinner />
-                ) : (
-                    <div className="flex flex-col gap-10 bg-rangBg pt-12">
-                        <Toaster />
-                        <div className="text-co flex flex-row-reverse md:justify-evenly justify-around mt-10 pb-6">
-                            <TabsBtn
-                                activeView={activeView}
-                                handleViewClick1={() => {
-                                    handleViewClick("view1");
-                                }}
-                                handleViewClick2={() => {
-                                    handleViewClick("view2");
-                                }}
+            <div className={`${darkMode && "dark"}`}>
+                <div className="dark:bg-slate-700 dark:text-white">
+                    <div className="w-11/12 h-80 mx-auto my-7 flex">
+                        <div className="w-1/2 h-max my-auto">
+                            <img
+                                className="absolute z-10 h-[11%] right-16 -mt-6"
+                                src="public/Rectangle 251.png"
                             />
-                            <CourseBlogTitle title="دوره ها" />
-                            <DownArrowBtn
-                                value={filterObj.RowsOfPage}
-                                onChange={handleFilterObjChange}
+                            <img
+                                className="absolute z-10 h-[22%] -mt-12 right-[45%]"
+                                src="public/Dots (1).png"
                             />
+                            <img
+                                className="absolute z-10 h-[18%] mt-16 right-[7%]"
+                                src="public/Dots.png"
+                            />
+                            <div className="z-50 relative font-normal mr-10 w-max h-max text-lg text-blue-500">
+                                مهمه از کی یاد می گیری!!
+                            </div>
+                            <div className="z-50 relative font-bold mt-3 mr-10 w-max h-max text-lg">
+                                اموزش برنامه نویسی با بهترین ها
+                            </div>
+                            <div className="z-50 relative mt-3 mr-10 text-stone-700 h-max text-sm">
+                                آموزش برنامه نویسی یکی از دوره‌های محبوب در حوزه فناوری اطلاعات است.
+                                برنامه نویسی مهارتی است که به افراد امکان می‌دهد تا نرم‌افزارهای
+                                کامپیوتری را ایجاد و توسعه دهند.{" "}
+                            </div>
                         </div>
-                        <TabsContent
-                            setFilter={handleFilterObjChange}
-                            onLikeChange={handleLikeChange}
-                            onRateChange={handleRateChange}
-                            activeView={activeView}
-                            cardDetail={CourseList?.courseFilterDtos}
-                            filterObj={filterObj}
-                            filterChange={handleFilterObjChange}
-                            cat={cat}
-                        />
-                        {CourseList && (
-                            <ChangePage
-                                pageCount={Math.ceil(
-                                    CourseList.totalCount / filterObj.RowsOfPage
+                        <div className="w-1/2 h/full">
+                            <img className="w-[85%] mx-auto h-full" src="public/Asset 1 1.png" />
+                        </div>
+                    </div>
+                    <div className="Loading">
+                        {loading ? (
+                            <LoadingSpinner />
+                        ) : (
+                            <div className="flex flex-col gap-10 bg-rangBg pt-12">
+                                <Toaster />
+                                <div className="text-co flex flex-row-reverse md:justify-evenly justify-around mt-10 pb-6">
+                                    <TabsBtn
+                                        activeView={activeView}
+                                        handleViewClick1={() => {
+                                            handleViewClick("view1");
+                                        }}
+                                        handleViewClick2={() => {
+                                            handleViewClick("view2");
+                                        }}
+                                    />
+                                    <CourseBlogTitle title="دوره ها" />
+                                    <DownArrowBtn
+                                        value={filterObj.RowsOfPage}
+                                        onChange={handleFilterObjChange}
+                                    />
+                                </div>
+                                <TabsContent
+                                    setFilter={handleFilterObjChange}
+                                    onLikeChange={handleLikeChange}
+                                    onRateChange={handleRateChange}
+                                    activeView={activeView}
+                                    cardDetail={CourseList?.courseFilterDtos}
+                                    filterObj={filterObj}
+                                    filterChange={handleFilterObjChange}
+                                    cat={cat}
+                                />
+                                {CourseList && (
+                                    <ChangePage
+                                        pageCount={Math.ceil(
+                                            CourseList.totalCount / filterObj.RowsOfPage
+                                        )}
+                                        currentPage={filterObj.PageNumber}
+                                        onChange={handleFilterObjChange}
+                                    />
                                 )}
-                                currentPage={filterObj.PageNumber}
-                                onChange={handleFilterObjChange}
-                            />
+                            </div>
                         )}
                     </div>
-                )}
+                    <button className="w-min bg-black text-white dark:text-black rounded-full p-2 dark:bg-white"
+                        onClick={toggleDarkMode}>
+                        {darkMode ? "LIT" : "DRK"}
+                    </button>
+                </div>
             </div>
         </>
     );

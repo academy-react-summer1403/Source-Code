@@ -24,51 +24,6 @@ const SecondViewCourses = ({ detail, onLikeChange, isLiked, issDisliked }) => {
   }
   return (
     <div className="mx-auto rounded-2xl flex mt-7">
-      {/* <div className="flex flex-none w-[200px] ">
-        <CoursePicture pic={detail.tumbImageAddress? detail.tumbImageAddress : "public/ang.png"} id={detail.courseId} />
-      </div>
-      <div className="flex flex-col justify-between px-4">
-        <div className="flex flex-col justify-between gap-3 pt-3">
-          <div className="flex justify-between">
-            <CourseTitle title={detail.title} id={detail.courseId} />
-            <CourseFavorite
-              id={detail.courseId}
-              userFavorite={detail.userFavorite}
-            />
-          </div>
-          <CourseMiniDescription
-            describe={detail.describe}
-            id={detail.courseId}
-          />
-        </div>
-
-        <div className="flex justify-between pt-5">
-          <div className="flex flex-col justify-center  text-center gap-2">
-            <div className="flex flex-col justify-center">
-              <CourseTeacher teacherName={detail.teacherName} />
-            </div>
-            <div className=" flex flex-col justify-center">
-              <CourseTechnology technologyList={detail.technologyList} />
-            </div>
-          </div>
-          <div className="  flex flex-col justify-center items-center text-center ">
-            <CourseRate currentRate={detail.currentRate} />
-          </div>
-          <div className="flex flex-col justify-center items-center text-center ">
-            <CoursePriceBtn cost={detail.cost} id={detail.courseId} />
-          </div>
-          <div className="flex flex-col justify-center items-center text-center ">
-            <LikeDisslike
-              id={detail.courseId}
-              isLiked={detail.userIsLiked}
-              isDissliked={detail.currentUserDissLike}
-              likeCount={detail.likeCount}
-              dissLikeCount={detail.dissLikeCount}
-              onLikeChange={onLikeChange}
-            />
-          </div>
-        </div>
-      </div> */}
       <a
         key={detail.courseId}
         onClick={() => handleCourseClick(detail.courseId)}

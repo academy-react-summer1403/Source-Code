@@ -73,34 +73,34 @@ function Dashbord() {
           </div>
         </div>
       </div>
-      <div className="border grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:h-44 md:h-60 h-80 border-indigo-400 w-11/12 mx-auto mt-10 rounded-2xl relative">
+      <div className="border grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:h-44 md:h-60 h-80 border-indigo-400 dark:border-white w-11/12 mx-auto mt-10 rounded-2xl relative">
         <div className="h-2/3 mt-3 mr-2 flex">
-          <div className="text-gray-500 mt-4 mr-3"> نام و نام خانوادگی : </div>
-          <div className="text-indigo-600 mt-4 mr-2">
+          <div className="text-gray-500 dark:text-white mt-4 mr-3"> نام و نام خانوادگی : </div>
+          <div className="text-indigo-600 dark:text-slate-400 mt-4 mr-2">
             {userInfo.fName && userInfo.lName && `${userInfo.fName} ${userInfo.lName}`}
           </div>
         </div>
         <div className="h-2/3 mt-3 mr-2 flex">
-          <div className="text-gray-500 mt-4 mr-3"> تاریخ تولد : </div>
-          <div className="text-indigo-600 mt-4 mr-2">{dateModified(userInfo.birthDay)} </div>
+          <div className="text-gray-500 dark:text-white mt-4 mr-3"> تاریخ تولد : </div>
+          <div className="text-indigo-600 dark:text-slate-400 mt-4 mr-2">{dateModified(userInfo.birthDay)} </div>
         </div>
         <div className="h-2/3 mt-3 mr-2 flex">
-          <div className="text-gray-500 mt-4 mr-3"> شماره همراه : </div>
-          <div className="text-indigo-600 mt-4 mr-2">
+          <div className="text-gray-500 dark:text-white mt-4 mr-3"> شماره همراه : </div>
+          <div className="text-indigo-600 dark:text-slate-400 mt-4 mr-2">
             {" "}
             {userInfo.phoneNumber}{" "}
           </div>
         </div>
         <div className="h-2/3 mr-2 flex">
-          <div className="text-gray-500 mt-4 mr-3"> شماره ملی : </div>
-          <div className="text-indigo-600 mt-4 mr-2">
+          <div className="text-gray-500 dark:text-white mt-4 mr-3"> شماره ملی : </div>
+          <div className="text-indigo-600 dark:text-slate-400 mt-4 mr-2">
             {" "}
             {userInfo.nationalCode}{" "}
           </div>
         </div>
         <div className="h-2/3 mr-2 flex">
-          <div className="text-gray-500 mt-4 mr-3"> ایمیل: </div>
-          <div className="text-indigo-600 mt-4 mr-2"> {userInfo.email} </div>
+          <div className="text-gray-500 dark:text-white mt-4 mr-3"> ایمیل: </div>
+          <div className="text-indigo-600 dark:text-slate-400 mt-4 mr-2"> {userInfo.email} </div>
         </div>
         {/* <div className="h-2/3 mt-3 mr-2 flex">
           <div className="text-gray-500 mt-4 mr-3"> درباره من: </div>
@@ -110,7 +110,7 @@ function Dashbord() {
           <div className="text-gray-500 mt-4 mr-3"> آدرس: </div>
           <div className="text-indigo-600 mt-4 mr-2"> {userInfo.homeAdderess} </div>
         </div> */}
-        <div className="absolute bottom-0 text-indigo-600 left-0 w-2/12 md:h-1/4 h-1/6 leading-10 text-center border border-t-indigo-400 border-r-indigo-400  rounded-tr-2xl rounded-bl-2xl">
+        <div className="absolute bottom-0 text-indigo-600 dark:text-white left-0 w-2/12 md:h-1/4 h-1/6 leading-10 text-center border border-t-indigo-400 border-r-indigo-400 dark:border-t-white dark:border-r-white  rounded-tr-2xl rounded-bl-2xl">
           {" "}
           ویرایش{" "}
         </div>
@@ -130,7 +130,7 @@ function Dashbord() {
                   دکتر بحرالعلوم{" "}
                 </div>
                 <div className="text-sm mt-4 ml-2 flex gap-1">
-                  <div className="text-indigo-600">500000</div>
+                  <div className="text-indigo-600 dark:text-white">500000</div>
                   <div>تومان</div>
                 </div>
               </div>
@@ -148,7 +148,7 @@ function Dashbord() {
                   دکتر بحرالعلوم{" "}
                 </div>
                 <div className="text-sm mt-4 ml-2 flex gap-1">
-                  <div className="text-indigo-600">500000</div>
+                  <div className="text-indigo-600 dark:text-white">500000</div>
                   <div>تومان</div>
                 </div>
               </div>
@@ -169,7 +169,7 @@ function Dashbord() {
                   دکتر بحرالعلوم{" "}
                 </div>
                 <div className="text-sm mt-4 ml-2 flex gap-1">
-                  <div className="text-indigo-600">500000</div>
+                  <div className="text-indigo-600 dark:text-white">500000</div>
                   <div>تومان</div>
                 </div>
               </div>
@@ -187,7 +187,7 @@ function Dashbord() {
                   دکتر بحرالعلوم{" "}
                 </div>
                 <div className="text-sm mt-4 ml-2 flex gap-1">
-                  <div className="text-indigo-600">500000</div>
+                  <div className="text-indigo-600 dark:text-white">500000</div>
                   <div>تومان</div>
                 </div>
               </div>
